@@ -1,0 +1,38 @@
+{
+  "name": "spotify-clone",
+  "version": "1.0.0",
+  "description": "This app is a Spotify-Clone.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon index.js",
+    "prod_start": "SET NODE_ENV=production & nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ayush-Kanduri/Spotify-Clone.git"
+  },
+  "keywords": [
+    "spotify",
+    "clone",
+    "spotify-clone",
+    "music",
+    "songs",
+    "node",
+    "express",
+    "mongodb"
+  ],
+  "author": "Ayush Kanduri",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Ayush-Kanduri/Spotify-Clone/issues"
+  },
+  "homepage": "https://github.com/Ayush-Kanduri/Spotify-Clone#readme",
+  "dependencies": {
+    "ejs": "^3.1.8",
+    "express": "^4.18.1",
+    "express-ejs-layouts": "^2.5.1",
+    "mongoose": "^6.3.5",
+    "nodemon": "^2.0.16"
+  }
+}
