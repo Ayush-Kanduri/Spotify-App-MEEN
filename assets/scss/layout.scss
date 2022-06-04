@@ -1,4 +1,3 @@
-@import url("https://fonts.googleapis.com/css2?family=Sansita+Swashed:wght@500&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Red+Hat+Display:wght@300;400;500&display=swap");
 * {
 	-webkit-user-select: none;
@@ -16,25 +15,21 @@
 	font-family: "Red Hat Display", sans-serif;
 }
 :root {
-	--header-color: #9af7ff;
-	--background-color: #b8fff9;
-	--logo-color: #00547a;
+	// --header-color: #9af7ff;
+	--background-color: black;
+	--logo-color: #1db954;
 	--text-color: #fff;
-	--logo-font-family: "Sansita Swashed", cursive;
-	--sub-heading-font-family: "Poppins", sans-serif;
+	--heading-font-family: "Poppins", sans-serif;
 	--text-font-family: "Red Hat Display", sans-serif;
-	--button-background-color: linear-gradient(
-		to right,
-		#1fa2ff 0%,
-		#12d8fa 51%,
-		#1fa2ff 100%
-	);
+	// --button-background-color: linear-gradient(
+	// 	to right,
+	// 	#1fa2ff 0%,
+	// 	#12d8fa 51%,
+	// 	#1fa2ff 100%
+	// );
 }
 body {
 	position: relative;
-	// background-color: var(--background-color);
-	// display: flex;
-	// flex-direction: column;
 	width: 100%;
     height: 100%;
 }

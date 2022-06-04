@@ -28,11 +28,11 @@ if (env.name == "development") {
 		sassMiddleware({
 			src: path.join(__dirname, env.asset_path, "scss"),
 			dest: path.join(__dirname, env.asset_path, "css"),
-			debug: true,
+			debug: false,
 			outputStyle: "extended",
 			prefix: "/css",
 		})
-	);
+	);   
 }
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
