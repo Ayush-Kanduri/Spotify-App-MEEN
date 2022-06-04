@@ -1,6 +1,7 @@
 const express = require("express");
 const app = express();
-const port = 8000;
+const env = require("./config/environment");
+const port = env.express_server_port;
 const expressLayouts = require("express-ejs-layouts");
 const cors = require("cors");
 const fs = require("fs");
@@ -8,7 +9,7 @@ const path = require("path");
 const http = require("http");
 const cookieParser = require("cookie-parser");
 const logger = require("morgan");
-const dotenv = require("dotenv");
+const dotenv = require("dotenv").config();
 const passport = require("passport");
 const flash = require("connect-flash");
 const session = require("express-session");
@@ -21,22 +22,22 @@ const MongoStore = require("connect-mongo");
 const route = require("./routes/index");
 
 app.use(cors());
-// if (env.name == "development") {
+if (env.name == "development") {
 app.use(
 	sassMiddleware({
-		src: path.join(__dirname, "./assets", "scss"),
-		dest: path.join(__dirname, "./assets", "css"),
+		src: path.join(__dirname, env.asset_path, "scss"),
+		dest: path.join(__dirname, env.asset_path, "css"),
 		debug: true,
 		outputStyle: "extended",
 		prefix: "/css",
 	})
 );
-// }
+}
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
-app.use(express.static("./assets"));
+app.use(express.static(env.asset_path));
 app.use("/uploads", express.static(__dirname + "/uploads"));
-// app.use(logger(env.morgan.mode, env.morgan.options));
+app.use(logger(env.morgan.mode, env.morgan.options));
 app.use(expressLayouts);
 app.set("layout extractStyles", true);
 app.set("layout extractScripts", true);
@@ -48,7 +49,7 @@ app.set("views", path.join(__dirname, "views"));
 // 		name: "spotifyclone",
 // 		//Secret Key for encrypting the session cookie
 //         //** TODO - Change the Secret Key before Deployment in Production Mode **//
-// 		secret: "secret",
+// 		secret: env.session_cookie_key,
 // 		//Don't save the uninitialized session
 // 		saveUninitialized: false,
 // 		//Dont re-save the session if it is not modified
@@ -62,7 +63,7 @@ app.set("views", path.join(__dirname, "views"));
 // 		store: MongoStore.create(
 // 			{
 // 				//DB Connection URL
-// 				mongoUrl: `mongodb://localhost/spotify_clone_development`,
+// 				mongoUrl: `mongodb://localhost/${env.db}`,
 //                 //Interacts with the mongoose to connect to the MongoDB
 // 				mongooseConnection: db,
 // 				//To auto remove the store
