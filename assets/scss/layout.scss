@@ -11,26 +11,20 @@
 	padding: 0;
 	margin: 0;
 	box-sizing: border-box;
-	font-family: "Poppins", sans-serif;
 	font-family: "Red Hat Display", sans-serif;
+	font-family: "Poppins", sans-serif;
 }
 :root {
-	// --header-color: #9af7ff;
 	--background-color: black;
 	--logo-color: #1db954;
 	--text-color: #fff;
 	--heading-font-family: "Poppins", sans-serif;
 	--text-font-family: "Red Hat Display", sans-serif;
-	// --button-background-color: linear-gradient(
-	// 	to right,
-	// 	#1fa2ff 0%,
-	// 	#12d8fa 51%,
-	// 	#1fa2ff 100%
-	// );
 }
 body {
 	position: relative;
 	width: 100%;
+	background-color: var(--background-color);
     height: 100%;
 }
 main{

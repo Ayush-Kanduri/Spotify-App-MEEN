@@ -11,8 +11,8 @@
   padding: 0;
   margin: 0;
   box-sizing: border-box;
-  font-family: "Poppins", sans-serif;
-  font-family: "Red Hat Display", sans-serif; }
+  font-family: "Red Hat Display", sans-serif;
+  font-family: "Poppins", sans-serif; }
 
 :root {
   --background-color: black;
@@ -24,6 +24,7 @@
 body {
   position: relative;
   width: 100%;
+  background-color: var(--background-color);
   height: 100%; }
 
 main {

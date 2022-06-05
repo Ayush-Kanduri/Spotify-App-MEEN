@@ -1,0 +1,39 @@
+<link rel="stylesheet" href="/css/user_sign_up.css" />
+
+<div class="signup">
+	<h1 class="signup__heading"><%= title %></h1>
+	<form id="signup__form" action="/users/create-user" method="post">
+		<input
+			type="text"
+			name="name"
+			placeholder="Enter Name"
+			autocomplete="off"
+			required
+		/>
+		<input
+			type="email"
+			name="email"
+			placeholder="Enter Email"
+			autocomplete="off"
+			required
+		/>
+		<input
+			type="password"
+			name="password"
+			placeholder="Enter Password"
+			autocomplete="off"
+			required
+		/>
+		<input
+			type="password"
+			name="confirm_password"
+			placeholder="Confirm Password"
+			autocomplete="off"
+			required
+		/>
+		<button class="signup__btn" type="submit">Sign Up</button>
+	</form>
+	<div class="links">
+		<a href="/users/login"> Login </a>&ensp;|&ensp;<a href="/"> Home </a>
+	</div>
+</div>

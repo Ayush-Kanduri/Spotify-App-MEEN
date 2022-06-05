@@ -1,10 +1,10 @@
 const express = require("express");
 const router = express.Router();
 
-const usersRouterFile = require("./users");
 const homeRouterFile = require("./home");
+const usersRouterFile = require("./users");
 
-router.use("/", usersRouterFile);
-router.use("/home", homeRouterFile);
+router.use("/", homeRouterFile);
+router.use("/users", usersRouterFile);
 
 module.exports = router;
