@@ -2,23 +2,37 @@ const User = require("../models/user");
 const { validationResult } = require("express-validator");
 
 module.exports.login = (req, res) => {
+	if (req.isAuthenticated()) {
+		return res.redirect("/");
+	}
 	return res.render("user_sign_in", {
 		title: "Login",
 	});
 };
 
 module.exports.signup = (req, res) => {
+	if (req.isAuthenticated()) {
+		return res.redirect("/");
+	}
 	return res.render("user_sign_up", {
 		title: "Sign Up",
 	});
 };
 
 module.exports.createSession = (req, res) => {
-	// req.flash("success", "Logged In Successfully !!!");
+	req.flash("success", "Logged In Successfully !!!");
 	return res.redirect("/");
 };
 
-module.exports.destroySession = (req, res) => {};
+module.exports.destroySession = (req, res) => {
+	req.logout((err) => {
+		if (err) {
+			return next(err);
+		}
+		req.flash("success", "Logged Out Successfully !!!");
+		return res.redirect("/");
+	});
+};
 
 module.exports.createUser = async (req, res) => {
 	try {

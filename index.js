@@ -10,14 +10,15 @@ const http = require("http");
 const cookieParser = require("cookie-parser");
 const logger = require("morgan");
 const dotenv = require("dotenv").config();
-const passport = require("passport");
 const flash = require("connect-flash");
+const customMiddleware = require("./config/middleware");
 const session = require("express-session");
 const sassMiddleware = require("node-sass-middleware");
 const db = require("./config/mongoose");
 // const passportGoogle = require("passport-google-oauth");
 // const passportJWT = require("passport-jwt");
-// const passportLocal = require("passport-local");
+const passport = require("passport");
+const passportLocal = require("./config/passport-local-strategy");
 // const passportSpotify = require("passport-spotify");
 const MongoStore = require("connect-mongo");
 const route = require("./routes/index");
@@ -32,7 +33,7 @@ if (env.name == "development") {
 			outputStyle: "extended",
 			prefix: "/css",
 		})
-	);   
+	);
 }
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
@@ -76,11 +77,11 @@ app.use(
 		),
 	})
 );
-// app.use(passport.initialize());
-// app.use(passport.session());
-// app.use(passport.setAuthenticatedUser);
-// app.use(flash());
-// app.use(customMiddleware.setFlash);
+app.use(passport.initialize());
+app.use(passport.session());
+app.use(passport.setAuthenticatedUser);
+app.use(flash());
+app.use(customMiddleware.setFlash);
 app.use("/", route);
 
 app.listen(port, (err) => {

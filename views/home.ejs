@@ -1,9 +1,12 @@
 <link rel="stylesheet" href="/css/home.css" />
+<% if(locals.user){ %>
+<h1 style="color: white ;">Welcome, <%= user.name %></h1>
+<% }else{ %>
 <div class="login">
 	<img
 		src="https://getheavy.com/wp-content/uploads/2019/12/spotify2019-830x350.jpg"
 		alt="spotify-logo"
-        class="login__logo"
+		class="login__logo"
 	/>
 	<div class="logo__btns">
 		<a href="" class="login__spotifyBtn">
@@ -20,3 +23,4 @@
 		</a>
 	</div>
 </div>
+<% } %>
