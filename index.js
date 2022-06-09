@@ -15,7 +15,7 @@ const customMiddleware = require("./config/middleware");
 const session = require("express-session");
 const sassMiddleware = require("node-sass-middleware");
 const db = require("./config/mongoose");
-// const passportGoogle = require("passport-google-oauth");
+const passportGoogle = require("./config/passport-google-oauth2-strategy");
 // const passportJWT = require("passport-jwt");
 const passport = require("passport");
 const passportLocal = require("./config/passport-local-strategy");
@@ -51,7 +51,7 @@ app.use(
 		secret: env.session_cookie_key,
 		//Don't save the uninitialized session
 		saveUninitialized: false,
-		//Dont re-save the session if it is not modified
+		//Don't re-save the session if it is not modified
 		resave: false,
 		//Cookie Options
 		cookie: {
