@@ -21,8 +21,10 @@ module.exports.signup = (req, res) => {
 
 module.exports.createSession = (req, res) => {
 	req.flash("success", "Logged In Successfully !!!");
+	req.session.playlists = req.body.playlists;
+	req.body={};
 	return res.redirect("/");
-};
+};;
 
 module.exports.destroySession = (req, res) => {
 	req.logout((err) => {

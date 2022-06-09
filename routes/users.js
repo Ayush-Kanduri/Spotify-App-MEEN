@@ -27,5 +27,23 @@ router.get(
 	passport.authenticate("google", { failureRedirect: "/users/login" }),
 	usersController.createSession
 );
+router.get(
+	"/auth/spotify",
+	passport.authenticate("spotify", {
+		scope: [
+			"user-read-email",
+			"user-read-private",
+			"playlist-read-collaborative",
+			"user-library-read",
+			"playlist-read-private",
+		],
+		showDialog: true,
+	})
+);
+router.get(
+	"/auth/spotify/callback",
+	passport.authenticate("spotify", { failureRedirect: "/users/login" }),
+	usersController.createSession
+);
 
 module.exports = router;

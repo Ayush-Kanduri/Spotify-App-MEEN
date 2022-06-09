@@ -19,7 +19,7 @@ const passportGoogle = require("./config/passport-google-oauth2-strategy");
 // const passportJWT = require("passport-jwt");
 const passport = require("passport");
 const passportLocal = require("./config/passport-local-strategy");
-// const passportSpotify = require("passport-spotify");
+const passportSpotify = require("./config/passport-spotify-strategy");
 const MongoStore = require("connect-mongo");
 const route = require("./routes/index");
 

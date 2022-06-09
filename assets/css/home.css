@@ -23,7 +23,7 @@
       padding: 20px;
       border-radius: 99px;
       background-color: var(--logo-color);
-      font-weight: 500;
+      font-weight: 600 !important;
       color: var(--text-color);
       text-decoration: none;
       display: flex;
@@ -33,7 +33,7 @@
       letter-spacing: 0.05rem;
       font-weight: 800;
       box-shadow: 0px 4px 5px rgba(54, 200, 0, 0.5);
-      transition: 0.15s ease-in; }
+      transition: 0.1s ease-in; }
       .login .logo__btns .login__spotifyBtn i,
       .login .logo__btns .login__googleBtn i,
       .login .logo__btns .login__btn i {
