@@ -1,0 +1,28 @@
+<link rel="stylesheet" href="/css/_sidebar.css" />
+<div class="sidebar">
+	<img
+		src="https://getheavy.com/wp-content/uploads/2019/12/spotify2019-830x350.jpg"
+		alt="spotify-logo"
+		class="sidebar__logo"
+	/>
+	<div class="sidebar__option">
+		<i class="fa-solid fa-house"></i>
+		<p>Home</p>
+	</div>
+	<div class="sidebar__option">
+		<i class="fa-solid fa-magnifying-glass"></i>
+		<p>Search</p>
+	</div>
+	<div class="sidebar__option">
+		<i class="fa-solid fa-music"></i>
+		<p>Your Library</p>
+	</div>
+	<br />
+	<strong class="sidebar__title">PLAYLISTS</strong>
+	<hr />
+	<% if(locals.playlists){ %> <% for(const playlist of playlists){ %>
+	<div class="sidebar__option">
+		<p><%= playlist.name %></p>
+	</div>
+	<% } %> <% } %>
+</div>

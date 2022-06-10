@@ -55,6 +55,9 @@
       .login .logo__btns .login__btn:hover {
         color: var(--background-color); }
 
+.player .player__body {
+  display: flex; }
+
 @media screen and (max-width: 700px) {
   .login .logo__btns {
     flex-direction: column;

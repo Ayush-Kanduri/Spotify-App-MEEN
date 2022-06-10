@@ -1,0 +1,105 @@
+.footer__green {
+  color: #1ed15e; }
+
+.footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 80px;
+  background-color: #282828;
+  padding: 20px;
+  color: var(--text-color);
+  display: flex;
+  justify-content: space-between;
+  align-items: center; }
+  .footer .footer_left {
+    flex: 0.3;
+    display: flex;
+    align-items: center;
+    color: var(--text-color);
+    width: 300px; }
+    .footer .footer_left .footer__albumLogo {
+      height: 50px;
+      width: 50px;
+      margin-right: 20px;
+      -o-object-fit: contain;
+      -ms-object-fit: contain;
+      -webkit-object-fit: contain;
+      -o-object-position: center;
+      -ms-object-position: center;
+      -webkit-object-position: center;
+      object-fit: contain;
+      object-position: center;
+      aspect-ratio: 1/1; }
+    .footer .footer_left .footer__songInfo p {
+      font-size: 12px; }
+  .footer .footer_center {
+    flex: 0.4;
+    padding: 0 100px;
+    color: var(--text-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    min-width: 300px;
+    max-width: 400px;
+    font-size: 20px; }
+    .footer .footer_center i:hover {
+      transition: transform 0.2s ease-in-out;
+      transform: scale(1.2) !important; }
+  .footer .footer_right {
+    flex: 0.3;
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+    align-items: center;
+    color: var(--text-color); }
+    .footer .footer_right input {
+      border: none;
+      outline: none;
+      -webkit-appearance: none;
+      width: 70%;
+      height: 20px;
+      background-color: transparent; }
+      .footer .footer_right input::-webkit-slider-runnable-track {
+        width: 100%;
+        height: 33%;
+        cursor: pointer;
+        animation: 0.2s;
+        box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.4);
+        background: #37e88a;
+        border-radius: 5px;
+        border: 1px solid #000000; }
+      .footer .footer_right input:focus {
+        outline: none; }
+      .footer .footer_right input:focus::-webkit-slider-runnable-track {
+        background: #37e88a; }
+      .footer .footer_right input::-webkit-slider-thumb {
+        box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.4);
+        border: 1px solid #000000;
+        height: 20px;
+        width: 12px;
+        border-radius: 5px;
+        background-color: var(--text-color);
+        cursor: pointer;
+        -webkit-appearance: none;
+        margin-top: -8px; }
+      .footer .footer_right input::-moz-range-thumb {
+        box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.4);
+        border: 1px solid #000000;
+        height: 20px;
+        width: 12px;
+        border-radius: 5px;
+        background-color: var(--text-color);
+        cursor: pointer;
+        -webkit-appearance: none;
+        margin-top: -8px; }
+
+@media screen and (max-width: 600px) {
+  .footer {
+    justify-content: center; }
+    .footer .footer_left {
+      display: none; }
+    .footer .footer_center {
+      flex: 1; }
+    .footer .footer_right {
+      display: none; } }

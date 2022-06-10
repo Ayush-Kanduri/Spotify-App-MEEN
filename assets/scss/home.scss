@@ -50,9 +50,15 @@
 				border-radius: 50%;
 			}
 			&:hover {
-				color: var(--background-color)
+				color: var(--background-color);
 			}
 		}
+	}
+}
+
+.player {
+	.player__body {
+	display: flex;
 	}
 }
 

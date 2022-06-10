@@ -24,8 +24,10 @@
 body {
   position: relative;
   width: 100%;
-  background-color: var(--background-color);
   height: 100%; }
+
+body::-webkit-scrollbar {
+  display: none; }
 
 main {
   width: 100vw;

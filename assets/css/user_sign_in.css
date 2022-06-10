@@ -4,7 +4,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-direction: column; }
+  flex-direction: column;
+  background-color: var(--background-color); }
   .login .login__heading {
     color: var(--text-color);
     font-size: 3rem;
