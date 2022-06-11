@@ -22,9 +22,9 @@ module.exports.signup = (req, res) => {
 module.exports.createSession = (req, res) => {
 	req.flash("success", "Logged In Successfully !!!");
 	req.session.playlists = req.body.playlists;
-	req.body={};
+	req.body = {};
 	return res.redirect("/");
-};;
+};
 
 module.exports.destroySession = (req, res) => {
 	req.logout((err) => {
@@ -59,6 +59,8 @@ module.exports.createUser = async (req, res) => {
 		}
 
 		let newUser = await User.create(req.body);
+		newUser.avatar =
+			"https://raw.githubusercontent.com/Ayush-Kanduri/Social-Book_Social_Media_Website/master/assets/images/empty-avatar.png";
 		console.log("Signed Up Successfully !!!");
 		// req.flash("success", "Signed Up Successfully !!!");
 		return res.redirect("/users/login");

@@ -1,5 +1,5 @@
 .footer__green {
-	color: #1ed15e;
+	color: var(--logo-color);
 }
 .footer {
 	position: fixed;
@@ -75,7 +75,7 @@
 				cursor: pointer;
 				animation: 0.2s;
 				box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.4);
-				background: #37e88a;
+				background: var(--logo-color);
 				border-radius: 5px;
 				border: 1px solid #000000;
 			}
@@ -83,7 +83,7 @@
 				outline: none;
 			}
 			&:focus::-webkit-slider-runnable-track {
-				background: #37e88a;
+				background: var(--logo-color);
 			}
 			&::-webkit-slider-thumb {
 				box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.4);

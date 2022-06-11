@@ -1,4 +1,78 @@
 <link rel="stylesheet" href="/css/_body.css" />
 <div class="body">
-	<h1>Body</h1>
+	<%- include('_header.ejs'); -%>
+
+	<div class="home">
+		<h1>Trending Songs</h1>
+		<div class="home__trendingSongs">
+			<div class="song">
+				<div class="album"></div>
+				<div class="songInfo">
+					<h4>Pasoori</h4>
+					<p>Shae Gill, Ali Sethi</p>
+				</div>
+			</div>
+		</div>
+
+		<h1>Albums</h1>
+		<div class="home__albums">
+			<div class="song">
+				<div class="album"></div>
+			</div>
+		</div>
+
+		<h1>New Releases</h1>
+		<div class="home__newReleases">
+			<div class="song">
+				<div class="album"></div>
+				<div class="songInfo">
+					<h4>Pasoori</h4>
+					<p>Shae Gill, Ali Sethi</p>
+				</div>
+			</div>
+		</div> 
+
+		<h1>Artists</h1>
+		<div class="home__artists">
+			<div class="artist">
+				<div class="artistImage"></div>
+				<div class="artistInfo">
+					<h4>Ali Sethi</h4>
+				</div>
+			</div>
+		</div>
+
+		<h1>Playlists</h1>
+		<div class="home__playlists">
+			<div class="playlist">
+				<div class="album"></div>
+			</div>
+		</div>
+
+		<h1>Genres & Mood</h1>
+		<div class="home__genres">
+			<div class="genre">
+				<div class="image"><h1>Happy</h1></div>
+			</div>
+		</div>
+		
+			<!-- <div class="body__info">
+		<img src="/images/banner1.png" alt="Playlist Banner" />
+		<div class="body__infoText">
+			<strong>PLAYLIST</strong>
+			<h2>Discover Weekly</h2>
+			<p>Description...</p>
+		</div>
+	</div>
+
+	<div class="body__songs">
+		<div class="body__icons">
+			<i class="fa-solid fa-circle-play body__shuffle"></i>
+			<i class="fa-solid fa-heart" style="font-size: xx-large"></i>
+			<i class="fa-solid fa-ellipsis"></i>
+		</div>
+		<%- include('_songRow.ejs'); -%>
+	</div> -->
+		</div>
+	</div>
 </div>
