@@ -29,3 +29,11 @@
         margin-left: 20px; }
   .songRow.songRow:last-of-type {
     margin-bottom: 100px; }
+
+@media screen and (max-width: 500px) {
+  .songRow .songRow__info {
+    flex: 1; }
+    .songRow .songRow__info + p {
+      display: none; }
+      .songRow .songRow__info + p + i + p {
+        display: none; } }

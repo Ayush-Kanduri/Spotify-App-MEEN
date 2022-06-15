@@ -9,9 +9,10 @@
 	background-color: #282828;
 	padding: 20px;
 	color: var(--text-color);
-	display: flex;
+	// display: flex;
 	justify-content: space-between;
 	align-items: center;
+	display: none;
 	.footer_left {
 		flex: 0.3;
 		display: flex;

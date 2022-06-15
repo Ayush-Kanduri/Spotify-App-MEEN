@@ -2,7 +2,7 @@
   display: flex;
   margin-bottom: 30px;
   align-items: center;
-  justify-content: space-between; }
+  justify-content: flex-end; }
   .header .header__left {
     flex: 0.5;
     min-width: 70px;
@@ -12,7 +12,8 @@
     padding: 10px;
     display: flex;
     align-items: center;
-    height: 40px; }
+    height: 40px;
+    display: none; }
     .header .header__left input {
       border: none;
       padding-left: 10px;
@@ -29,7 +30,8 @@
     padding: 10px;
     border-radius: 50px;
     cursor: pointer;
-    transition: all 0.15s ease-in; }
+    transition: all 0.13s ease-in;
+    position: relative; }
     .header .header__right:hover {
       background-color: #484848; }
     .header .header__right h4 {
@@ -47,3 +49,45 @@
       object-fit: contain;
       object-position: center;
       aspect-ratio: 1/1; }
+    .header .header__right .dropdown_menu {
+      position: absolute;
+      top: 70px;
+      width: 100%;
+      min-width: 170px;
+      background-color: #484848;
+      left: 0;
+      padding: 10px;
+      border-radius: 15px;
+      display: none; }
+      .header .header__right .dropdown_menu.active {
+        display: initial; }
+      .header .header__right .dropdown_menu ul {
+        width: 100%;
+        height: 100%;
+        list-style: none; }
+        .header .header__right .dropdown_menu ul hr {
+          border: 1px solid #767676;
+          width: 90%;
+          margin: 10px auto; }
+        .header .header__right .dropdown_menu ul li {
+          width: 100%;
+          padding: 10px;
+          margin: auto;
+          height: 40px;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          border-radius: 15px;
+          border-bottom: 1px solid #484848; }
+          .header .header__right .dropdown_menu ul li:hover {
+            background-color: #767676; }
+
+@media screen and (max-width: 700px) {
+  .header {
+    gap: 1rem; }
+    .header .header__left {
+      flex: 1; } }
+
+@media screen and (max-width: 700px) {
+  .header {
+    flex-direction: column; } }

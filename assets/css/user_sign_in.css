@@ -55,3 +55,15 @@
     .login a:hover, .login a:focus, .login a:active, .login a:visited, .login a:link {
       color: var(--text-color);
       outline: none; }
+  .login .links {
+    margin-top: 1rem;
+    color: var(--text-color); }
+    .login .links a {
+      color: var(--text-color);
+      text-decoration: none;
+      cursor: pointer; }
+      .login .links a:hover {
+        text-decoration: underline; }
+      .login .links a:hover, .login .links a:focus, .login .links a:active, .login .links a:visited, .login .links a:link {
+        color: var(--text-color);
+        outline: none; }

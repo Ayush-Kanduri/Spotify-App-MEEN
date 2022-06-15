@@ -1,0 +1,97 @@
+<link rel="stylesheet" href="/css/_body.css" />
+
+<div class="body">
+	<%- include('_header.ejs'); -%> <% if(profile_user.id == locals.user.id){ %>
+	<div class="profile">
+		<form
+			action="/users/update/<%= profile_user.id %>"
+			method="post"
+			enctype="multipart/form-data"
+		>
+			<div class="body__info">
+				<div
+					class="userAvatar"
+					style="background-image: url('<%= locals.user.avatar %>')"
+				>
+					<input
+						type="file"
+						name="avatar"
+						class="profilePicture"
+						accept="image/png, image/gif, image/jpeg, image/jpg"
+					/>
+				</div>
+				<div class="body__infoText">
+					<h1>Name</h1>
+					<input
+						type="text"
+						name="name"
+						class="nameInput"
+						value="<%= locals.user.name %>"
+						autocomplete="off"
+					/>
+					<h1>Email</h1>
+					<input
+						type="email"
+						name="email"
+						class="emailInput"
+						value="<%= locals.user.email %>"
+						autocomplete="off"
+					/>
+					<h1>Password</h1>
+					<input
+						type="password"
+						name="password"
+						class="passwordInput"
+						value="<%= locals.user.password %>"
+						autocomplete="off"
+					/>
+				</div>
+				<button type="submit">UPDATE</button>
+			</div>
+		</form>
+		<div class="following">
+			<h1>Following</h1>
+			<div class="person">
+				<div
+					class="image"
+					style="background-image: url('<%= locals.user.avatar %>')"
+				></div>
+				<h3>Ankush</h3>
+			</div>
+		</div>
+		<div class="followers">
+			<h1>Followers</h1>
+			<div class="person">
+				<div
+					class="image"
+					style="background-image: url('<%= locals.user.avatar %>')"
+				></div>
+				<h3>Ankush</h3>
+			</div>
+			<div class="person">
+				<div
+					class="image"
+					style="background-image: url('<%= locals.user.avatar %>')"
+				></div>
+				<h3>Ankush</h3>
+			</div>
+		</div>
+	</div>
+	<% } else { %>
+	<div class="profile">
+		<div class="body__info">
+			<div
+				class="userAvatar"
+				style="background-image: url('<%= locals.user.avatar %>')"
+			></div>
+			<div class="body__infoText">
+				<h1>Name</h1>
+				<h2><%= locals.user.name %></h2>
+				<h1>Email</h1>
+				<h2><%= locals.user.email %></h2>
+			</div>
+			<button>Follow</button>
+		</div>
+	</div>
+	<% } %>
+</div>

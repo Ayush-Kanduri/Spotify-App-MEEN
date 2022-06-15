@@ -1,0 +1,46 @@
+<link rel="stylesheet" href="/css/_body.css" />
+
+<div class="body">
+	<%- include('_header.ejs'); -%>
+	<div class="create_playlist">
+		<div class="body__info">
+			<div class="albumImage">
+				<form action="" method="post" enctype="multipart/form-data">
+					<input
+						type="file"
+						name="playlistPoster"
+						class="playlistPoster"
+						accept="image/png, image/gif, image/jpeg, image/jpg"
+					/>
+				</form>
+			</div>
+			<div class="body__infoText">
+				<strong>PLAYLIST</strong>
+				<input
+					type="text"
+					name="playlist_nameInput"
+					class="playlist_nameInput"
+					value="Custom Playlist"
+					minlength="1"
+					min="1"
+					autocomplete="off"
+				/>
+				<h2 class="playlist_name">Custom Playlist</h2>
+				<div class="user_info">
+					<img src="<%= locals.user.avatar %>" alt="User Image" />
+					<p><%= locals.user.name %></p>
+					<p>•</p>
+					<p>72 Songs</p>
+				</div>
+			</div>
+		</div>
+
+		<div class="body__songs">
+			<div class="body__icons">
+				<i class="fa-solid fa-circle-play body__shuffle"></i>
+				<i class="fa-solid fa-ellipsis"></i>
+			</div>
+			<%- include('_songRow.ejs'); -%>
+		</div>
+	</div>
+</div>

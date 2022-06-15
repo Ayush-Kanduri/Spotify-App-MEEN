@@ -12,7 +12,28 @@ router.post(
 	passport.authenticate("local", { failureRedirect: "/users/login" }),
 	usersController.createSession
 );
-router.get("/logout", usersController.destroySession);
+router.get(
+	"/logout",
+	passport.checkAuthentication,
+	usersController.destroySession
+);
+router.get(
+	"/recommendations",
+	passport.checkAuthentication,
+	usersController.recommendations
+);
+router.get(
+	"/profile/:id",
+	passport.checkAuthentication,
+	usersController.profile
+);
+router.get("/library", passport.checkAuthentication, usersController.library);
+router.get(
+	"/liked-songs",
+	passport.checkAuthentication,
+	usersController.likedSongs
+);
+router.get("/share", passport.checkAuthentication, usersController.share);
 router.post(
 	"/create-user",
 	middleware.validate("createUser"),

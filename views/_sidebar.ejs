@@ -5,32 +5,48 @@
 		alt="spotify-logo"
 		class="sidebar__logo"
 	/>
-	<div class="sidebar__option">
+	<div class="sidebar__option" onclick="window.location.href='/';">
 		<i class="fa-solid fa-house"></i>
 		<p>Home</p>
 	</div>
-	<div class="sidebar__option">
-		<i class="fa-solid fa-magnifying-glass"></i>
-		<p>Search</p>
+	<div
+		class="sidebar__option search_click"
+		onclick="window.location.href='/search';"
+	>
+		<i class="fa-solid fa-magnifying-glass search_click"></i>
+		<p class="search_click">Search</p>
 	</div>
-	<div class="sidebar__option">
+	<div
+		class="sidebar__option"
+		onclick="window.location.href='/users/library';"
+	>
 		<i class="fa-solid fa-music"></i>
 		<p>Your Library</p>
 	</div>
 	<br />
-	<div class="sidebar__option">
-		<i class="fa-solid fa-square-plus" style="font-size: x-large;"></i>
+	<div
+		class="sidebar__option"
+		onclick="window.location.href='/playlists/create';"
+	>
+		<i class="fa-solid fa-square-plus" style="font-size: x-large"></i>
 		<p>Create Playlist</p>
 	</div>
-	<div class="sidebar__option">
-		<i class="fa-solid fa-heart" style="font-size: x-large;"></i>
+	<div
+		class="sidebar__option"
+		onclick="window.location.href='/users/liked-songs';"
+	>
+		<i class="fa-solid fa-heart" style="font-size: x-large"></i>
 		<p>Liked Songs</p>
+	</div>
+	<div class="sidebar__option" onclick="window.location.href='/users/share';">
+		<i class="fa-solid fa-share-nodes" style="font-size: x-large"></i>
+		<p>Share</p>
 	</div>
 	<br />
 	<strong class="sidebar__title">PLAYLISTS</strong>
 	<hr />
 	<% if(locals.playlists){ %> <% for(const playlist of playlists){ %>
-	<div class="sidebar__option">
+	<div class="sidebar__option" onclick="window.location.href='/playlists';">
 		<p><%= playlist.name %></p>
 	</div>
 	<% } %> <% } %>

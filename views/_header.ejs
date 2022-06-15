@@ -1,4 +1,5 @@
 <link rel="stylesheet" href="/css/_header.css" />
+
 <header class="header">
 	<div class="header__left">
 		<i class="fa-solid fa-magnifying-glass"></i>
@@ -7,5 +8,55 @@
 	<div class="header__right">
 		<img src="<%= locals.user.avatar %>" alt="User Avatar" />
 		<h4><%= locals.user.name %></h4>
+		<div class="dropdown_menu">
+			<ul>
+				<li class="dropdown_menu__home" onclick="window.location.href='/';">
+					Home
+				</li>
+				<li
+					class="dropdown_menu__profile"
+					onclick="window.location.href='/users/profile/<%= locals.user.id %>';"
+				>
+					Profile
+				</li>
+				<li
+					class="dropdown_menu__search search_click"
+					onclick="window.location.href='/search';"
+				>
+					Search
+				</li>
+				<li
+					class="dropdown_menu__library"
+					onclick="window.location.href='/users/library';"
+				>
+					Library
+				</li>
+				<li
+					class="dropdown_menu__createPlaylist"
+					onclick="window.location.href='/playlists/create';"
+				>
+					Create Playlist
+				</li>
+				<li
+					class="dropdown_menu__likedSong"
+					onclick="window.location.href='/users/liked-songs';"
+				>
+					Liked Songs
+				</li>
+				<li
+					class="dropdown_menu__share"
+					onclick="window.location.href='/users/share';"
+				>
+					Share Activity
+				</li>
+				<hr />
+				<li
+					class="dropdown_menu__logout"
+					onclick="window.location.href='/users/logout';"
+				>
+					Log Out
+				</li>
+			</ul>
+		</div>
 	</div>
 </header>

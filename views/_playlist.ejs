@@ -1,0 +1,33 @@
+<link rel="stylesheet" href="/css/_body.css" />
+
+<div class="body">
+	<%- include('_header.ejs'); -%>
+	<div class="playlist">
+		<div class="body__info">
+			<img src="/images/banner1.png" alt="Playlist Banner" />
+			<div class="body__infoText">
+				<strong>PLAYLIST</strong>
+				<h2>Discover Weekly</h2>
+				<p>
+					Your weekly mixtape of fresh music. Enjoy new music and deep cuts
+					picked for you.
+				</p>
+				<div class="user_info">
+					<img src="<%= locals.user.avatar %>" alt="User Image" />
+					<p><%= locals.user.name %></p>
+					<p>•</p>
+					<p>72 Songs</p>
+				</div>
+			</div>
+		</div>
+
+		<div class="body__songs">
+			<div class="body__icons">
+				<i class="fa-solid fa-circle-play body__shuffle"></i>
+				<i class="fa-solid fa-heart" style="font-size: xx-large"></i>
+				<i class="fa-solid fa-ellipsis"></i>
+			</div>
+			<%- include('_songRow.ejs'); -%>
+		</div>
+	</div>
+</div>

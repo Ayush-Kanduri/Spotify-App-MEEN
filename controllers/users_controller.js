@@ -1,6 +1,35 @@
 const User = require("../models/user");
 const { validationResult } = require("express-validator");
 
+module.exports.share = (req, res) => {};
+
+module.exports.library = (req, res) => {
+	return res.render("user_library", {
+		title: "Your Library",
+	});
+};
+
+module.exports.likedSongs = (req, res) => {
+	return res.render("liked_songs", {
+		title: "Liked Songs",
+	});
+};
+
+module.exports.profile = async (req, res) => {
+	try {
+		const id = req.params.id;
+		const user = await User.findById(id);
+		return res.render("user_profile", {
+			title: "Profile",
+			profile_user: user,
+		});
+	} catch (error) {
+		console.log("Error in fetching the user profile !!!");
+		req.flash("error", "Error in fetching the user profile !!!");
+		return res.redirect("back");
+	}
+};
+
 module.exports.login = (req, res) => {
 	if (req.isAuthenticated()) {
 		return res.redirect("/");
@@ -19,11 +48,17 @@ module.exports.signup = (req, res) => {
 	});
 };
 
-module.exports.createSession = (req, res) => {
+module.exports.recommendations = (req, res) => {
 	req.flash("success", "Logged In Successfully !!!");
-	req.session.playlists = req.body.playlists;
-	req.body = {};
 	return res.redirect("/");
+};
+
+module.exports.createSession = (req, res) => {
+	// req.session.playlists = req.body.playlists;
+	// req.body = {};
+	return res.render("recommendations", {
+		title: "Music Preferences",
+	});
 };
 
 module.exports.destroySession = (req, res) => {

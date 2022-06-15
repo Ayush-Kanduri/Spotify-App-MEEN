@@ -2,7 +2,7 @@
 	display: flex;
 	margin-bottom: 30px;
 	align-items: center;
-	justify-content: space-between;
+	justify-content: flex-end;
 	.header__left {
 		flex: 0.5;
 		min-width: 70px;
@@ -13,6 +13,7 @@
 		display: flex;
 		align-items: center;
 		height: 40px;
+		display: none;
 		input {
 			border: none;
 			padding-left: 10px;
@@ -34,6 +35,7 @@
 		border-radius: 50px;
 		cursor: pointer;
 		transition: all 0.13s ease-in;
+		position: relative;
 		&:hover {
 			background-color: rgb(72, 72, 72);
 		}
@@ -54,5 +56,57 @@
 			object-position: center;
 			aspect-ratio: 1/1;
 		}
+		.dropdown_menu {
+			position: absolute;
+			top: 70px;
+			width: 100%;
+			min-width: 170px;
+			background-color: rgb(72, 72, 72);
+			left: 0;
+			padding: 10px;
+			border-radius: 15px;
+			display: none;
+			&.active {
+				display: initial;
+			}
+			ul {
+				width: 100%;
+				height: 100%;
+				list-style: none;
+				hr {
+					border: 1px solid rgb(118, 118, 118);
+					width: 90%;
+					margin: 10px auto;
+				}
+				li {
+					width: 100%;
+					padding: 10px;
+					margin: auto;
+					height: 40px;
+					display: flex;
+					align-items: center;
+					justify-content: space-between;
+					border-radius: 15px;
+					border-bottom: 1px solid rgb(72, 72, 72);
+					&:hover {
+						background-color: rgb(118, 118, 118);
+					}
+				}
+			}
+		}
+	}
+}
+
+@media screen and (max-width: 700px) {
+	.header {
+		gap: 1rem;
+		.header__left {
+			flex: 1;
+		}
+	}
+}
+@media screen and (max-width: 700px) {
+	.header {
+		flex-direction: column;
 	}
 }

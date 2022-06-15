@@ -1,9 +1,10 @@
 <link rel="stylesheet" href="/css/home.css" />
 <script defer src="/js/home.js"></script>
+
 <% if(locals.user){ %>
 <div class="player">
 	<div class="player__body">
-		<%- include('_sidebar.ejs') -%> <%- include('_body.ejs') -%>
+		<%- include('_sidebar.ejs') -%> <%- include('_playlist.ejs') -%>
 	</div>
 	<%- include('_footer.ejs') -%>
 </div>

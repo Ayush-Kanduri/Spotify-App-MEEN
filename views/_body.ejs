@@ -1,7 +1,7 @@
 <link rel="stylesheet" href="/css/_body.css" />
+
 <div class="body">
 	<%- include('_header.ejs'); -%>
-
 	<div class="home">
 		<h1>Trending Songs</h1>
 		<div class="home__trendingSongs">
@@ -30,7 +30,7 @@
 					<p>Shae Gill, Ali Sethi</p>
 				</div>
 			</div>
-		</div> 
+		</div>
 
 		<h1>Artists</h1>
 		<div class="home__artists">
@@ -43,9 +43,9 @@
 		</div>
 
 		<h1>Playlists</h1>
-		<div class="home__playlists">
-			<div class="playlist">
-				<div class="album"></div>
+		<div class="home__playlists playlist_click">
+			<div class="playlist playlist_click" onclick="window.location.href='/playlists';">
+				<div class="album playlist_click"></div>
 			</div>
 		</div>
 
@@ -54,25 +54,6 @@
 			<div class="genre">
 				<div class="image"><h1>Happy</h1></div>
 			</div>
-		</div>
-		
-			<!-- <div class="body__info">
-		<img src="/images/banner1.png" alt="Playlist Banner" />
-		<div class="body__infoText">
-			<strong>PLAYLIST</strong>
-			<h2>Discover Weekly</h2>
-			<p>Description...</p>
-		</div>
-	</div>
-
-	<div class="body__songs">
-		<div class="body__icons">
-			<i class="fa-solid fa-circle-play body__shuffle"></i>
-			<i class="fa-solid fa-heart" style="font-size: xx-large"></i>
-			<i class="fa-solid fa-ellipsis"></i>
-		</div>
-		<%- include('_songRow.ejs'); -%>
-	</div> -->
 		</div>
 	</div>
 </div>

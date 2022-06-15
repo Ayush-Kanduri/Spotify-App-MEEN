@@ -22,6 +22,7 @@
 		.login__googleBtn,
 		.login__btn {
 			padding: 20px;
+			cursor: pointer;
 			border-radius: 99px;
 			background-color: var(--logo-color);
 			font-weight: 600 !important;
@@ -58,7 +59,7 @@
 
 .player {
 	.player__body {
-	display: flex;
+		display: flex;
 	}
 }
 

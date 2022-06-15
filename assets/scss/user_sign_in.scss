@@ -69,4 +69,24 @@
 			outline: none;
 		}
 	}
+	.links {
+        margin-top: 1rem;
+        color: var(--text-color);
+		a {
+			color: var(--text-color);
+			text-decoration: none;
+			cursor: pointer;
+			&:hover {
+				text-decoration: underline;
+			}
+			&:hover,
+			&:focus,
+			&:active,
+			&:visited,
+			&:link {
+				color: var(--text-color);
+				outline: none;
+			}
+		}
+	}
 }
