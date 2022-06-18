@@ -34,12 +34,18 @@ const userSchema = new mongoose.Schema(
 		avatar: {
 			type: String,
 		},
-		// playlists: [
-		// 	{
-		// 		type: mongoose.Schema.Types.ObjectId,
-		// 		ref: "Playlist",
-		// 	},
-		// ],
+		playlists: [
+			{
+				type: mongoose.Schema.Types.ObjectId,
+				ref: "Playlist",
+			},
+		],
+		genreUserRelations: [
+			{
+				type: mongoose.Schema.Types.ObjectId,
+				ref: "GenreUserRelation",
+			},
+		],
 	},
 	{
 		timestamps: true,
