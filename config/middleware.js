@@ -174,7 +174,7 @@ const setGenre = async () => {
 				await track.save();
 				await genre.save();
 			}
-		}
+		} 
 	} catch (error) {
 		console.log(error);
 		return;
