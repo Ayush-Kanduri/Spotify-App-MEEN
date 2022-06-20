@@ -4,20 +4,17 @@ const artistSchema = new mongoose.Schema(
 	{
 		name: {
 			type: String,
-			required: true,
 		},
 		albums: [
 			{
 				type: mongoose.Schema.Types.ObjectId,
 				ref: "Album",
-				required: true,
 			},
 		],
 		tracks: [
 			{
 				type: mongoose.Schema.Types.ObjectId,
 				ref: "Track",
-				required: true,
 			},
 		],
 		thumbnail: {

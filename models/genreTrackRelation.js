@@ -5,12 +5,10 @@ const genreTrackRelationSchema = new mongoose.Schema(
 		genre: {
 			type: mongoose.Schema.Types.ObjectId,
 			ref: "Genre",
-			required: true,
 		},
 		track: {
 			type: mongoose.Schema.Types.ObjectId,
 			ref: "Track",
-			required: true,
 		},
 	},
 	{ timestamps: true }

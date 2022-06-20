@@ -39,6 +39,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(express.static(env.asset_path));
 app.use("/uploads", express.static(__dirname + "/uploads"));
+app.use("/storage", express.static(__dirname + "/storage"));
 app.use(logger(env.morgan.mode, env.morgan.options));
 app.use(expressLayouts);
 app.set("layout extractStyles", true);
@@ -82,6 +83,7 @@ app.use(passport.session());
 app.use(passport.setAuthenticatedUser);
 app.use(flash());
 app.use(customMiddleware.setFlash);
+app.use(customMiddleware.addMusic);
 app.use("/", route);
 
 app.listen(port, (err) => {

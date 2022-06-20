@@ -4,34 +4,23 @@ const trackSchema = new mongoose.Schema(
 	{
 		name: {
 			type: String,
-			required: true,
 		},
 		artist: {
 			type: mongoose.Schema.Types.ObjectId,
 			ref: "Artist",
-			required: true,
 		},
 		album: {
 			type: mongoose.Schema.Types.ObjectId,
 			ref: "Album",
-			required: true,
 		},
 		duration: {
-			type: Number,
-			required: true,
+			type: String,
 		},
 		url: {
 			type: String,
-			required: true,
 		},
 		thumbnail: {
 			type: String,
-			required: true,
-		},
-		genre: {
-			type: mongoose.Schema.Types.ObjectId,
-			ref: "Genre",
-			required: true,
 		},
 		existingPlaylistTrackRelations: [
 			{
@@ -51,6 +40,20 @@ const trackSchema = new mongoose.Schema(
 				ref: "GenreTrackRelation",
 			},
 		],
+		playlist: [
+			{
+				type: String,
+			},
+		],
+		genre: [
+			{
+				type: String,
+			},
+		],
 	},
 	{ timestamps: true }
 );
+
+const Track = mongoose.model("Track", trackSchema);
+
+module.exports = Track;
