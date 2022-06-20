@@ -1,5 +1,7 @@
-const User = require("../models/user");
 const { validationResult } = require("express-validator");
+const User = require("../models/user");
+const Genre = require("../models/genre");
+const GenreUserRelation = require("../models/genreUserRelation");
 
 module.exports.share = (req, res) => {};
 
@@ -18,7 +20,7 @@ module.exports.likedSongs = (req, res) => {
 module.exports.profile = async (req, res) => {
 	try {
 		const id = req.params.id;
-		const user = await User.findById(id);
+		const user = await User.findById(id).select("-password -__v");
 		return res.render("user_profile", {
 			title: "Profile",
 			profile_user: user,
@@ -48,17 +50,49 @@ module.exports.signup = (req, res) => {
 	});
 };
 
-module.exports.recommendations = (req, res) => {
-	req.flash("success", "Logged In Successfully !!!");
-	return res.redirect("/");
+module.exports.recommendations = async (req, res) => {
+	try {
+		let user = await User.findById(req.user.id);
+		for (let key in req.query) {
+			let genre = await Genre.findById(req.query[key]);
+			let genreUserRelation = await GenreUserRelation.create({
+				genre: genre._id,
+				user: user._id,
+			});
+			await user.genreUserRelations.push(genreUserRelation);
+			await genre.genreUserRelations.push(genreUserRelation);
+			await user.save();
+			await genre.save();
+		}
+		req.flash("success", "Logged In Successfully !!!");
+		return res.redirect("/");
+	} catch (error) {
+		req.flash("error", "Error in Logging in !!!");
+		return res.redirect("/users/logout");
+	}
 };
 
-module.exports.createSession = (req, res) => {
+module.exports.createSession = async (req, res) => {
 	// req.session.playlists = req.body.playlists;
 	// req.body = {};
-	return res.render("recommendations", {
-		title: "Music Preferences",
-	});
+	try {
+		let genres = await Genre.find({});
+		if (
+			req.user.genreUserRelations.length === 0 ||
+			req.user.genreUserRelations === undefined
+		) {
+			return res.render("recommendations", {
+				title: "Music Preferences",
+				all_genres: genres,
+			});
+		}
+		req.flash("success", "Logged In Successfully !!!");
+		return res.redirect("/");
+	} catch (error) {
+		console.log("Error in creating the session !!!");
+		req.flash("error", "Error in creating the session !!!");
+		return res.redirect("back");
+	}
 };
 
 module.exports.destroySession = (req, res) => {

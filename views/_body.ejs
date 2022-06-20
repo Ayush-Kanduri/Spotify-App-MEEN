@@ -16,47 +16,74 @@
 
 		<h1>Albums</h1>
 		<div class="home__albums">
+			<% for(let album of all_albums){ %>
 			<div class="song">
-				<div class="album"></div>
+				<div
+					class="album"
+					style="background-image: url('<%= album.thumbnail %>')"
+				></div>
 			</div>
+			<% } %>
 		</div>
 
 		<h1>New Releases</h1>
 		<div class="home__newReleases">
+			<% for(let track of new_releases){ %>
 			<div class="song">
-				<div class="album"></div>
+				<div
+					class="album"
+					style="background-image: url('<%= track.thumbnail %>')"
+				></div>
 				<div class="songInfo">
-					<h4>Pasoori</h4>
-					<p>Shae Gill, Ali Sethi</p>
+					<h4><%= track.name %></h4>
+					<p><%= track.artist.name %></p>
 				</div>
 			</div>
+			<% } %>
 		</div>
 
 		<h1>Artists</h1>
 		<div class="home__artists">
+			<% for(let artist of all_artists){ %>
 			<div class="artist">
-				<div class="artistImage"></div>
+				<div
+					class="artistImage"
+					style="background-image: url('<%= artist.thumbnail %>')"
+				></div>
 				<div class="artistInfo">
-					<h4>Ali Sethi</h4>
+					<h4><%= artist.name %></h4>
 				</div>
 			</div>
+			<% } %>
 		</div>
 
 		<h1>Playlists</h1>
 		<div class="home__playlists playlist_click">
+			<% for(let playlist of all_existing_playlists){ %>
 			<div
 				class="playlist playlist_click"
 				onclick="window.location.href='/playlists';"
 			>
-				<div class="album playlist_click"></div>
+				<div
+					class="album playlist_click"
+					style="background-image: url('<%= playlist.thumbnail %>')"
+				></div>
 			</div>
+			<% } %>
 		</div>
 
 		<h1>Genres & Mood</h1>
 		<div class="home__genres">
+			<% for(let genre of current_user.genreUserRelations){ %>
 			<div class="genre">
-				<div class="image"><h1>Happy</h1></div>
+				<div
+					class="image"
+					style="background-image: url('<%= genre.genre.thumbnail %>')"
+				>
+					<h1><%= genre.genre.name %></h1>
+				</div>
 			</div>
+			<% } %>
 		</div>
 	</div>
 </div>

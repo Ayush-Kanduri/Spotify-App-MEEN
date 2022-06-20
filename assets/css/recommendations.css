@@ -51,9 +51,11 @@
         filter: grayscale(0.5); }
       .recommendations .genres .genre h2 {
         width: 100%;
-        padding: 1.5%;
+        padding: 5%;
         background-color: rgba(0, 0, 0, 0.5);
-        color: var(--text-color); }
+        color: var(--text-color);
+        font-size: 2.5rem;
+        text-shadow: 0 5px 5px black; }
       .recommendations .genres .genre i {
         font-size: 6rem;
         color: var(--text-color);
@@ -69,10 +71,11 @@
   to {
     opacity: 1; } }
   .recommendations button {
-    padding: 20px;
+    padding: 20px 50px;
+    font-weight: 800;
+    font-size: 2rem;
     border-radius: 99px;
     background-color: var(--background-color);
-    font-weight: 600 !important;
     color: var(--text-color);
     text-decoration: none;
     display: flex;
@@ -82,7 +85,6 @@
     margin-top: 1rem;
     letter-spacing: 0.05rem;
     cursor: pointer;
-    font-weight: 800;
     transition: 0.1s ease-in;
     outline: none;
     border: none;

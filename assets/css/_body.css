@@ -141,7 +141,7 @@
         transform: scale(1.04);
         background-color: rgba(0, 0, 0, 0.8); }
       .body .home .home__newReleases .song .album {
-        width: 100%;
+        width: 45%;
         height: 100%;
         background-size: cover;
         background-position: center;
@@ -153,8 +153,10 @@
         flex-direction: column;
         padding-left: 10px;
         padding-right: 20px;
-        padding-bottom: 10px; }
+        padding-bottom: 10px;
+        width: 50%; }
         .body .home .home__newReleases .song .songInfo p {
+          margin-top: 10px;
           font-size: 12px;
           color: lightgray; }
   .body .home .home__albums {
@@ -597,7 +599,11 @@
 
 @media screen and (max-width: 700px) {
   .body {
-    flex: 1; } }
+    flex: 1; }
+  .body .home .home__newReleases .song {
+    min-width: 100%; }
+    .body .home .home__newReleases .song .album {
+      width: 40%; } }
 
 @media screen and (max-width: 685px) {
   .body .profile .following .person .image,
@@ -610,10 +616,12 @@
     align-items: center;
     flex-direction: column; }
     .body .body__info img {
-      height: 150px; } }
+      height: 150px; }
+  .body .home .home__newReleases .song .songInfo h4 {
+    word-break: break-all; } }
 
 @media screen and (max-width: 360px) {
   .body .home .home__newReleases .song {
     min-width: 250px; }
     .body .home .home__newReleases .song .album {
-      width: 60%; } }
+      width: 40%; } }

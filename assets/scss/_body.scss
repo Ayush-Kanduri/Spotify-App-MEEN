@@ -173,7 +173,7 @@
 					background-color: rgba(0, 0, 0, 0.8);
 				}
 				.album {
-					width: 100%;
+					width: 45%;
 					height: 100%;
 					background-size: cover;
 					background-position: center;
@@ -187,7 +187,9 @@
 					padding-left: 10px;
 					padding-right: 20px;
 					padding-bottom: 10px;
+					width: 50%;
 					p {
+						margin-top: 10px;
 						font-size: 12px;
 						color: lightgray;
 					}
@@ -692,6 +694,18 @@
 	.body {
 		flex: 1;
 	}
+	.body {
+		.home {
+			.home__newReleases {
+				.song {
+					min-width: 100%;
+					.album {
+						width: 40%;
+					}
+				}
+			}
+		}
+	}
 }
 
 @media screen and (max-width: 685px) {
@@ -720,6 +734,9 @@
 			}
 		}
 	}
+	.body .home .home__newReleases .song .songInfo h4 {
+		word-break: break-all;
+	}
 }
 
 @media screen and (max-width: 360px) {
@@ -729,7 +746,7 @@
 				.song {
 					min-width: 250px;
 					.album {
-						width: 60%;
+						width: 40%;
 					}
 				}
 			}

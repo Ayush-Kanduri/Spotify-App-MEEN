@@ -5,78 +5,16 @@
 	<h1>Music Preferences</h1>
 	<p>Choose your Music Preferences to enjoy Personalized Recommendations.</p>
 	<div class="genres">
+		<% for(let genre of all_genres){ %>
 		<div
 			class="genre active"
-			style="background-image: url('/images/happy.jpg')"
+			data-genre-id="<%= genre.id %>"
+			style="background-image: url('<%= genre.thumbnail %>')"
 		>
-			<h2>Happy</h2>
+			<h2><%= genre.name %></h2>
 			<i class="fa-solid fa-circle-check"></i>
 		</div>
-		<div
-			class="genre active"
-			style="background-image: url('/images/sad.jpg')"
-		>
-			<h2>Sad</h2>
-			<i class="fa-solid fa-circle-check"></i>
-		</div>
-		<div
-			class="genre active"
-			style="background-image: url('/images/workout.jpg')"
-		>
-			<h2>Workout</h2>
-			<i class="fa-solid fa-circle-check"></i>
-		</div>
-		<div
-			class="genre active"
-			style="background-image: url('/images/long-drive.jpg')"
-		>
-			<h2>Long Drive</h2>
-			<i class="fa-solid fa-circle-check"></i>
-		</div>
-		<div
-			class="genre active"
-			style="background-image: url('/images/bollywood.jpg')"
-		>
-			<h2>Bollywood</h2>
-			<i class="fa-solid fa-circle-check"></i>
-		</div>
-		<div
-			class="genre active"
-			style="background-image: url('/images/calm.jpg')"
-		>
-			<h2>Calmness</h2>
-			<i class="fa-solid fa-circle-check"></i>
-		</div>
-		<div
-			class="genre active"
-			style="background-image: url('/images/dance.jpg')"
-		>
-			<h2>Dance</h2>
-			<i class="fa-solid fa-circle-check"></i>
-		</div>
-		<div
-			class="genre active"
-			style="background-image: url('/images/jazz.jpg')"
-		>
-			<h2>Jazz</h2>
-			<i class="fa-solid fa-circle-check"></i>
-		</div>
-		<div
-			class="genre active"
-			style="background-image: url('/images/chill.jpg')"
-		>
-			<h2>Chill</h2>
-			<i class="fa-solid fa-circle-check"></i>
-		</div>
-		<div
-			class="genre active"
-			style="background-image: url('/images/rock.jpg')"
-		>
-			<h2>Rock</h2>
-			<i class="fa-solid fa-circle-check"></i>
-		</div>
+		<% } %>
 	</div>
-	<button onclick="window.location.href='/users/recommendations'">
-		Submit
-	</button>
+	<button>Submit</button>
 </div>
