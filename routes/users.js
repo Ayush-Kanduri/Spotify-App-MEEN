@@ -27,6 +27,11 @@ router.get(
 	passport.checkAuthentication,
 	usersController.profile
 );
+router.post(
+	"/update/:id",
+	passport.checkAuthentication,
+	usersController.update
+);
 router.get("/library", passport.checkAuthentication, usersController.library);
 router.get(
 	"/liked-songs",

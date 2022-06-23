@@ -9,10 +9,11 @@
 			enctype="multipart/form-data"
 		>
 			<div class="body__info">
-				<div
-					class="userAvatar"
-					style="background-image: url('<%= locals.user.avatar %>')"
-				>
+				<div class="userAvatar">
+					<img
+						src="<%= locals.user.avatar %>"
+						alt="<%= locals.user.name %>"
+					/>
 					<input
 						type="file"
 						name="avatar"
@@ -28,6 +29,7 @@
 						class="nameInput"
 						value="<%= locals.user.name %>"
 						autocomplete="off"
+						required
 					/>
 					<h1>Email</h1>
 					<input
@@ -36,6 +38,7 @@
 						class="emailInput"
 						value="<%= locals.user.email %>"
 						autocomplete="off"
+						required
 					/>
 					<h1>Password</h1>
 					<input
@@ -44,6 +47,7 @@
 						class="passwordInput"
 						value="<%= locals.user.password %>"
 						autocomplete="off"
+						required
 					/>
 				</div>
 				<button type="submit">UPDATE</button>
@@ -51,30 +55,25 @@
 		</form>
 		<div class="following">
 			<h1>Following</h1>
+			<% for(let user of all_users){ %>
 			<div class="person">
-				<div
-					class="image"
-					style="background-image: url('<%= locals.user.avatar %>')"
-				></div>
-				<h3>Ankush</h3>
+				<div class="image">
+					<img src="<%= user.avatar %>" alt="<%= user.name %>" />
+				</div>
+				<h3><%= user.name %></h3>
 			</div>
+			<% } %>
 		</div>
 		<div class="followers">
 			<h1>Followers</h1>
+			<% for(let user of all_users){ %>
 			<div class="person">
-				<div
-					class="image"
-					style="background-image: url('<%= locals.user.avatar %>')"
-				></div>
-				<h3>Ankush</h3>
+				<div class="image">
+					<img src="<%= user.avatar %>" alt="<%= user.name %>" />
+				</div>
+				<h3><%= user.name %></h3>
 			</div>
-			<div class="person">
-				<div
-					class="image"
-					style="background-image: url('<%= locals.user.avatar %>')"
-				></div>
-				<h3>Ankush</h3>
-			</div>
+			<% } %>
 		</div>
 	</div>
 	<% } else { %>
