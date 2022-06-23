@@ -62,7 +62,7 @@
 			<% for(let playlist of all_existing_playlists){ %>
 			<div
 				class="playlist playlist_click"
-				onclick="window.location.href='/playlists';"
+				onclick="window.location.href='/playlists/<%= playlist._id %>';"
 			>
 				<div
 					class="album playlist_click"

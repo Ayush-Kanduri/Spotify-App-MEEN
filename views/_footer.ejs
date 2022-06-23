@@ -14,13 +14,23 @@
 	<div class="footer_center">
 		<i class="fa-solid fa-shuffle footer__green" style="font-size: small"></i>
 		<i class="fa-solid fa-backward-step"></i>
-		<i class="fa-solid fa-circle-play" style="font-size: xx-large"></i>
+		<i
+			class="fa-solid fa-circle-play play-pause"
+			style="font-size: xx-large"
+		></i>
 		<i class="fa-solid fa-forward-step"></i>
 		<i class="fa-solid fa-repeat footer__green" style="font-size: small"></i>
 	</div>
 	<div class="footer_right">
-		<i class="fas fa-bars"></i>
+		<i class="fas fa-bars" style="cursor: pointer"></i>
 		<i class="fa-solid fa-volume-low"></i>
-		<input type="range" name="volume" />
+		<input
+			type="range"
+			name="volume"
+			class="song_volume"
+			value="50"
+			min="0"
+			max="100"
+		/>
 	</div>
 </div>

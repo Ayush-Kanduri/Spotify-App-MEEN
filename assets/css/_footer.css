@@ -11,7 +11,10 @@
   color: var(--text-color);
   justify-content: space-between;
   align-items: center;
-  display: none; }
+  display: none;
+  transition: all 0.4s ease-in; }
+  .footer.active {
+    display: flex; }
   .footer .footer_left {
     flex: 0.3;
     display: flex;
@@ -19,8 +22,9 @@
     color: var(--text-color);
     width: 300px; }
     .footer .footer_left .footer__albumLogo {
-      height: 50px;
-      width: 50px;
+      height: 55px;
+      width: 55px;
+      border-radius: 7px;
       margin-right: 20px;
       -o-object-fit: contain;
       -ms-object-fit: contain;
@@ -43,9 +47,11 @@
     min-width: 300px;
     max-width: 400px;
     font-size: 20px; }
-    .footer .footer_center i:hover {
-      transition: transform 0.2s ease-in-out;
-      transform: scale(1.2) !important; }
+    .footer .footer_center i {
+      cursor: pointer; }
+      .footer .footer_center i:hover {
+        transition: transform 0.2s ease-in-out;
+        transform: scale(1.2) !important; }
   .footer .footer_right {
     flex: 0.3;
     display: flex;

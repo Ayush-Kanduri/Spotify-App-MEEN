@@ -1,16 +1,27 @@
 <link rel="stylesheet" href="/css/_songRow.css" />
+<script defer src="/js/_songRow.js"></script>
 
-<div class="songRow">
+<audio src="" hidden></audio>
+
+<% for(song of playlist.existingPlaylistTrackRelations){ %>
+<div
+	class="songRow"
+	data-song-thumbnail="<%= song.track.thumbnail %>"
+	data-song-name="<%= song.track.name %>"
+	data-song-artist="<%= song.track.artist.name %>"
+	data-song-url="<%= song.track.url %>"
+>
 	<img
-		src="https://i.scdn.co/image/ab67616d0000b2733f3d35703bdcd917dad51c4f"
-		alt=""
+		src="<%= song.track.thumbnail %>"
+		alt="<%= song.track.name %>"
 		class="songRow__album"
 	/>
 	<div class="songRow__info">
-		<h1>Pasoori</h1>
-		<p>Shae Gill, Ali Sethi</p>
+		<h1><%= song.track.name %></h1>
+		<p><%= song.track.artist.name %></p>
 	</div>
-	<p>Coke Studio</p>
+	<p><%= song.track.album.name %></p>
 	<i class="fa-solid fa-heart" style="color: #1ed15e"></i>
-	<p>3:35</p>
+	<p><%= song.track.duration %></p>
 </div>
+<% } %>
