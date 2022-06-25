@@ -381,6 +381,33 @@
 				}
 			}
 		}
+		input[type="submit"] {
+			padding: 20px;
+			width: 30%;
+			border-radius: 99px;
+			background-color: var(--logo-color);
+			font-weight: 600 !important;
+			color: var(--text-color);
+			text-decoration: none;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			word-spacing: 0.1rem;
+			margin: auto;
+			margin-top: 2rem;
+			letter-spacing: 0.05rem;
+			cursor: pointer;
+			font-weight: 800;
+			transition: 0.1s ease-in;
+			&:hover {
+				color: var(--background-color);
+			}
+			outline: none;
+			border: none;
+			&:focus {
+				outline: none;
+			}
+		}
 	}
 	.liked_playlist {
 	}

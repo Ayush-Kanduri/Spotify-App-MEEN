@@ -18,7 +18,10 @@
 					</p>
 					<p>•</p>
 					<p>
-						<%= playlist.existingPlaylistTrackRelations.length %> Songs
+						<% try{ %> <%= playlist.existingPlaylistTrackRelations.length
+						%> <% }catch(err){} %> <% try{ %> <%=
+						playlist.playlistTrackRelations.length %> <% }catch(err){} %>
+						Songs
 					</p>
 				</div>
 			</div>

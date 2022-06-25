@@ -38,6 +38,14 @@
 	&.songRow:last-of-type {
 		margin-bottom: 100px;
 	}
+	input[type="checkbox"] {
+		height: 30px;
+		width: 30px;
+		cursor: pointer;
+		&:checked {
+			background-color: var(--logo-color);
+		}
+	}
 }
 
 @media screen and (max-width: 500px) {

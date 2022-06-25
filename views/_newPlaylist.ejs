@@ -1,46 +1,76 @@
+<link rel="stylesheet" href="/css/_songRow.css" />
 <link rel="stylesheet" href="/css/_body.css" />
+<script defer src="/js/create_playlist.js"></script>
 
 <div class="body">
 	<%- include('_header.ejs'); -%>
-	<div class="create_playlist">
-		<div class="body__info">
-			<div class="albumImage">
-				<form action="" method="post" enctype="multipart/form-data">
+	<form
+		action="/playlists/create-playlist"
+		method="post"
+		id="create_playlist"
+		enctype="multipart/form-data"
+	>
+		<div class="create_playlist">
+			<div class="body__info">
+				<div class="albumImage">
 					<input
 						type="file"
-						name="playlistPoster"
+						name="thumbnail"
 						class="playlistPoster"
 						accept="image/png, image/gif, image/jpeg, image/jpg"
 					/>
-				</form>
-			</div>
-			<div class="body__infoText">
-				<strong>PLAYLIST</strong>
-				<input
-					type="text"
-					name="playlist_nameInput"
-					class="playlist_nameInput"
-					value="Custom Playlist"
-					minlength="1"
-					min="1"
-					autocomplete="off"
-				/>
-				<h2 class="playlist_name">Custom Playlist</h2>
-				<div class="user_info">
-					<img src="<%= locals.user.avatar %>" alt="User Image" />
-					<p><%= locals.user.name %></p>
-					<p>•</p>
-					<p>72 Songs</p>
+				</div>
+				<div class="body__infoText">
+					<strong>PLAYLIST</strong>
+					<input
+						type="text"
+						name="name"
+						class="playlist_nameInput"
+						value="Custom Playlist"
+						minlength="1"
+						min="1"
+						autocomplete="off"
+					/>
+					<h2 class="playlist_name">Custom Playlist</h2>
+					<div class="user_info">
+						<img src="<%= locals.user.avatar %>" alt="User Image" />
+						<p><%= locals.user.name %></p>
+						<p>•</p>
+						<p>0 Songs</p>
+					</div>
 				</div>
 			</div>
-		</div>
 
-		<div class="body__songs">
-			<div class="body__icons">
-				<i class="fa-solid fa-circle-play body__shuffle"></i>
-				<i class="fa-solid fa-ellipsis"></i>
+			<div class="body__songs">
+				<div class="body__icons">
+					<!-- <i class="fa-solid fa-circle-play body__shuffle"></i>
+					<i class="fa-solid fa-heart" style="font-size: xx-large"></i>
+					<i class="fa-solid fa-ellipsis"></i> -->
+				</div>
+				<% for(let song of tracks){ %>
+				<div class="songRow">
+					<img
+						src="<%= song.thumbnail %>"
+						alt="<%= song.name %>"
+						class="songRow__album"
+					/>
+					<div class="songRow__info">
+						<h1><%= song.name %></h1>
+						<p><%= song.artist.name %></p>
+					</div>
+					<p><%= song.album.name %></p>
+					<input
+						type="checkbox"
+						name="songs"
+						id="<%= song.id %>"
+						value="<%= song.id %>"
+					/>
+					<!-- <i class="fa-solid fa-heart"></i>
+					<p><%= song.duration %></p> -->
+				</div>
+				<% } %>
 			</div>
-			<%- include('_songRow.ejs'); -%>
+			<input type="submit" value="Create" />
 		</div>
-	</div>
+	</form>
 </div>

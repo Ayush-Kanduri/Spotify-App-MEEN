@@ -27,6 +27,30 @@
 </div>
 <% }}catch{} %>
 
+<!-- Playlists -->
+<% try{ for(song of playlist.playlistTrackRelations){ %>
+<div
+	class="songRow"
+	data-song-thumbnail="<%= song.track.thumbnail %>"
+	data-song-name="<%= song.track.name %>"
+	data-song-artist="<%= song.track.artist.name %>"
+	data-song-url="<%= song.track.url %>"
+>
+	<img
+		src="<%= song.track.thumbnail %>"
+		alt="<%= song.track.name %>"
+		class="songRow__album"
+	/>
+	<div class="songRow__info">
+		<h1><%= song.track.name %></h1>
+		<p><%= song.track.artist.name %></p>
+	</div>
+	<p><%= song.track.album.name %></p>
+	<i class="fa-solid fa-heart"></i>
+	<p><%= song.track.duration %></p>
+</div>
+<% }}catch{} %>
+
 <!-- Artists -->
 <% try{ for(song of artist.tracks){ %>
 <div

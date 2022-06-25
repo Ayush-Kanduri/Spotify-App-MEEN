@@ -45,8 +45,12 @@
 	<br />
 	<strong class="sidebar__title">PLAYLISTS</strong>
 	<hr />
-	<% if(locals.playlists){ %> <% for(const playlist of playlists){ %>
-	<div class="sidebar__option" onclick="window.location.href='/playlists';">
+	<% if(locals.user.playlists.length > 0){ %> <% for(let playlist of
+	locals.user.playlists){ %>
+	<div
+		class="sidebar__option"
+		onclick="window.location.href='/playlists/custom/<%= playlist._id %>';"
+	>
 		<p><%= playlist.name %></p>
 	</div>
 	<% } %> <% } %>

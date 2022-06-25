@@ -31,6 +31,9 @@
 				e.target.classList.toggle("active");
 				playlistNameInput.classList.toggle("active");
 				playlistNameInput.focus();
+				//To place the cursor at the end of the input
+				const length = playlistNameInput.value.length;
+				playlistNameInput.setSelectionRange(length, length);
 			};
 
 			playlistNameInput.onkeypress = (e) => {
@@ -47,13 +50,12 @@
 				playlistName.classList.toggle("active");
 				playlistName.textContent = "";
 				playlistName.textContent = e.target.value;
-				console.log(e.target.value);
+				// console.log(e.target.value);
 				e.target.blur();
-				//TODO: Call AJAX from here to update the playlist name
 			};
 
 			playlistPoster.onchange = (e) => {
-				console.log(e.target.files[0]);
+				// console.log(e.target.files[0]);
 			};
 		};
 		playlist();

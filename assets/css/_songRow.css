@@ -29,6 +29,12 @@
         margin-left: 20px; }
   .songRow.songRow:last-of-type {
     margin-bottom: 100px; }
+  .songRow input[type="checkbox"] {
+    height: 30px;
+    width: 30px;
+    cursor: pointer; }
+    .songRow input[type="checkbox"]:checked {
+      background-color: var(--logo-color); }
 
 @media screen and (max-width: 500px) {
   .songRow .songRow__info {

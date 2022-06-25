@@ -27,7 +27,7 @@ passport.serializeUser((user, done) => {
 
 passport.deserializeUser(async (id, done) => {
 	try {
-		let user = await User.findById(id);
+		let user = await User.findById(id).populate("playlists");
 		return done(null, user);
 	} catch (error) {
 		req.flash("error", "Error in finding the User !!!");
