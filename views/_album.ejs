@@ -4,11 +4,10 @@
 	<%- include('_header.ejs'); -%>
 	<div class="playlist">
 		<div class="body__info">
-			<img src="<%= playlist.thumbnail %>" alt="Playlist Banner" />
+			<img src="<%= album.thumbnail %>" alt="Album Banner" />
 			<div class="body__infoText">
-				<strong>PLAYLIST</strong>
-				<h2><%= playlist.name %></h2>
-				<p><%= playlist.description %></p>
+				<strong>Album</strong>
+				<h2><%= album.name %></h2>
 				<div class="user_info">
 					<img src="<%= locals.user.avatar %>" alt="User Image" />
 					<p
@@ -17,9 +16,7 @@
 						<%= locals.user.name %>
 					</p>
 					<p>•</p>
-					<p>
-						<%= playlist.existingPlaylistTrackRelations.length %> Songs
-					</p>
+					<p><%= album.tracks.length %> Songs</p>
 				</div>
 			</div>
 		</div>

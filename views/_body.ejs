@@ -1,5 +1,7 @@
 <link rel="stylesheet" href="/css/_body.css" />
 
+<audio src="" hidden></audio>
+
 <div class="body">
 	<%- include('_header.ejs'); -%>
 	<div class="home">
@@ -17,7 +19,10 @@
 		<h1>Albums</h1>
 		<div class="home__albums">
 			<% for(let album of all_albums){ %>
-			<div class="song">
+			<div
+				class="song"
+				onclick="window.location.href='/albums/<%= album._id %>';"
+			>
 				<div
 					class="album"
 					style="background-image: url('<%= album.thumbnail %>')"
@@ -29,7 +34,13 @@
 		<h1>New Releases</h1>
 		<div class="home__newReleases">
 			<% for(let track of new_releases){ %>
-			<div class="song">
+			<div
+				class="song playable-tracks"
+				data-song-thumbnail="<%= track.thumbnail %>"
+				data-song-name="<%= track.name %>"
+				data-song-artist="<%= track.artist.name %>"
+				data-song-url="<%= track.url %>"
+			>
 				<div
 					class="album"
 					style="background-image: url('<%= track.thumbnail %>')"
@@ -45,7 +56,10 @@
 		<h1>Artists</h1>
 		<div class="home__artists">
 			<% for(let artist of all_artists){ %>
-			<div class="artist">
+			<div
+				class="artist"
+				onclick="window.location.href='/artists/<%= artist._id %>';"
+			>
 				<div
 					class="artistImage"
 					style="background-image: url('<%= artist.thumbnail %>')"

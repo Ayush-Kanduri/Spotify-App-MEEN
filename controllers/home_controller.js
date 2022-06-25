@@ -6,9 +6,6 @@ const Artist = require("../models/artist");
 const Album = require("../models/album");
 
 module.exports.home = async (req, res) => {
-	// let count1 = await Track.countDocuments();
-	// let count2 = await Track.count({});
-	// const count3 = await Track.estimatedDocumentCount();
 	try {
 		let users = await User.find({})
 			.select("-password -__v")
@@ -44,6 +41,17 @@ module.exports.home = async (req, res) => {
 				let item2 = artists[j];
 				if (item.name === item2.name) {
 					artists.splice(j, 1);
+					j--;
+				}
+			}
+		}
+
+		for (let i = 0; i < albums.length; i++) {
+			let item = albums[i];
+			for (let j = i + 1; j < albums.length; j++) {
+				let item2 = albums[j];
+				if (item.name === item2.name) {
+					albums.splice(j, 1);
 					j--;
 				}
 			}

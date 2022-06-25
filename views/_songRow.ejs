@@ -3,7 +3,8 @@
 
 <audio src="" hidden></audio>
 
-<% for(song of playlist.existingPlaylistTrackRelations){ %>
+<!-- Existing Playlists -->
+<% try{ for(song of playlist.existingPlaylistTrackRelations){ %>
 <div
 	class="songRow"
 	data-song-thumbnail="<%= song.track.thumbnail %>"
@@ -21,7 +22,55 @@
 		<p><%= song.track.artist.name %></p>
 	</div>
 	<p><%= song.track.album.name %></p>
-	<i class="fa-solid fa-heart" style="color: #1ed15e"></i>
+	<i class="fa-solid fa-heart"></i>
 	<p><%= song.track.duration %></p>
 </div>
-<% } %>
+<% }}catch{} %>
+
+<!-- Artists -->
+<% try{ for(song of artist.tracks){ %>
+<div
+	class="songRow"
+	data-song-thumbnail="<%= song.thumbnail %>"
+	data-song-name="<%= song.name %>"
+	data-song-artist="<%= song.artist.name %>"
+	data-song-url="<%= song.url %>"
+>
+	<img
+		src="<%= song.thumbnail %>"
+		alt="<%= song.name %>"
+		class="songRow__album"
+	/>
+	<div class="songRow__info">
+		<h1><%= song.name %></h1>
+		<p><%= song.artist.name %></p>
+	</div>
+	<p><%= song.album.name %></p>
+	<i class="fa-solid fa-heart"></i>
+	<p><%= song.duration %></p>
+</div>
+<% }}catch{} %>
+
+<!-- Albums -->
+<% try{ for(song of album.tracks){ %>
+<div
+	class="songRow"
+	data-song-thumbnail="<%= song.thumbnail %>"
+	data-song-name="<%= song.name %>"
+	data-song-artist="<%= song.artist.name %>"
+	data-song-url="<%= song.url %>"
+>
+	<img
+		src="<%= song.thumbnail %>"
+		alt="<%= song.name %>"
+		class="songRow__album"
+	/>
+	<div class="songRow__info">
+		<h1><%= song.name %></h1>
+		<p><%= song.artist.name %></p>
+	</div>
+	<p><%= song.album.name %></p>
+	<i class="fa-solid fa-heart"></i>
+	<p><%= song.duration %></p>
+</div>
+<% }}catch{} %>
