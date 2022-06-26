@@ -37,6 +37,19 @@ module.exports.profile = async (req, res) => {
 };
 
 module.exports.update = async (req, res) => {
+	try {
+		let users = await User.find({});
+		if (users.length === 0) {
+			const files = await fs.promises.readdir(
+				path.join(__dirname, "..", User.avatarPath)
+			);
+			for (let file of files) {
+				fs.unlinkSync(path.join(__dirname, "..", User.avatarPath, file));
+			}
+		}
+	} catch (error) {
+		console.log(error);
+	}
 	if (req.params.id == req.user.id) {
 		try {
 			let user = await User.findById(req.params.id);
