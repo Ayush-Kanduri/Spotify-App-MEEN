@@ -11,8 +11,8 @@
 			<div class="body__info">
 				<div class="userAvatar">
 					<img
-						src="<%= locals.user.avatar %>"
-						alt="<%= locals.user.name %>"
+						src="<%= profile_user.avatar %>"
+						alt="<%= profile_user.name %>"
 					/>
 					<input
 						type="file"
@@ -27,7 +27,7 @@
 						type="text"
 						name="name"
 						class="nameInput"
-						value="<%= locals.user.name %>"
+						value="<%= profile_user.name %>"
 						autocomplete="off"
 						required
 					/>
@@ -36,7 +36,7 @@
 						type="email"
 						name="email"
 						class="emailInput"
-						value="<%= locals.user.email %>"
+						value="<%= profile_user.email %>"
 						autocomplete="off"
 						required
 					/>
@@ -45,7 +45,7 @@
 						type="password"
 						name="password"
 						class="passwordInput"
-						value="<%= locals.user.password %>"
+						value="<%= profile_user.password %>"
 						autocomplete="off"
 						required
 					/>
@@ -79,15 +79,17 @@
 	<% } else { %>
 	<div class="profile">
 		<div class="body__info">
-			<div
-				class="userAvatar"
-				style="background-image: url('<%= locals.user.avatar %>')"
-			></div>
+			<div class="userAvatar">
+				<img
+					src="<%= profile_user.avatar %>"
+					alt="<%= profile_user.name %>"
+				/>
+			</div>
 			<div class="body__infoText">
 				<h1>Name</h1>
-				<h2><%= locals.user.name %></h2>
+				<h2><%= profile_user.name %></h2>
 				<h1>Email</h1>
-				<h2><%= locals.user.email %></h2>
+				<h2><%= profile_user.email %></h2>
 			</div>
 			<button>Follow</button>
 		</div>

@@ -60,7 +60,7 @@
 		};
 		playlist();
 	} catch (error) {
-		console.log(error);
+		// console.log(error);
 	}
 	//Dropdown Menu
 	try {

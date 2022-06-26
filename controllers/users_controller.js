@@ -22,7 +22,7 @@ module.exports.likedSongs = (req, res) => {
 module.exports.profile = async (req, res) => {
 	try {
 		const id = req.params.id;
-		const user = await User.findById(id).select("-password -__v");
+		const user = await User.findById(id);
 		const users = await User.find({});
 		return res.render("user_profile", {
 			title: "Profile",

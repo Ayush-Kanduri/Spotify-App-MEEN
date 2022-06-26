@@ -396,6 +396,8 @@
         .body .library .library__albums .song .songInfo p {
           font-size: 12px;
           color: lightgray; }
+  .body .search h3 {
+    font-weight: 600; }
   .body .search h1 {
     margin-bottom: 15px; }
   .body .search .songs,
@@ -434,8 +436,18 @@
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat;
-        background-image: url("https://i.scdn.co/image/ab67616d0000b2733f3d35703bdcd917dad51c4f");
+        background-image: url("");
         aspect-ratio: 1/1; }
+        .body .search .songs .song .album img,
+        .body .search .albums .song .album img,
+        .body .search .playlists .song .album img {
+          width: 100%;
+          height: 97%;
+          -o-object-fit: cover;
+          -o-object-position: center;
+          object-fit: cover;
+          object-position: center;
+          aspect-ratio: 1/1; }
       .body .search .songs .song .songInfo,
       .body .search .albums .song .songInfo,
       .body .search .playlists .song .songInfo {
@@ -483,8 +495,18 @@
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat;
-        background-image: url("https://i.scdn.co/image/ab67616d0000b2733f3d35703bdcd917dad51c4f");
+        background-image: url("");
         aspect-ratio: 1/1; }
+        .body .search .artists .artist .artistImage img,
+        .body .search .profiles .artist .artistImage img {
+          width: 100%;
+          height: 100%;
+          border-radius: 50%;
+          -o-object-fit: cover;
+          -o-object-position: center;
+          object-fit: cover;
+          object-position: center;
+          aspect-ratio: 1/1; }
       .body .search .artists .artist .artistInfo,
       .body .search .profiles .artist .artistInfo {
         padding-bottom: 10px; }
