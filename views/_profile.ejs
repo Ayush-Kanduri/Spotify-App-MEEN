@@ -55,8 +55,11 @@
 		</form>
 		<div class="following">
 			<h1>Following</h1>
-			<% for(let user of all_users){ %>
-			<div class="person">
+			<% for(let user of following){ %>
+			<div
+				class="person"
+				onclick="window.location.href='/users/profile/<%= user.id %>';"
+			>
 				<div class="image">
 					<img src="<%= user.avatar %>" alt="<%= user.name %>" />
 				</div>
@@ -66,8 +69,11 @@
 		</div>
 		<div class="followers">
 			<h1>Followers</h1>
-			<% for(let user of all_users){ %>
-			<div class="person">
+			<% for(let user of followers){ %>
+			<div
+				class="person"
+				onclick="window.location.href='/users/profile/<%= user.id %>';"
+			>
 				<div class="image">
 					<img src="<%= user.avatar %>" alt="<%= user.name %>" />
 				</div>
@@ -91,7 +97,23 @@
 				<h1>Email</h1>
 				<h2><%= profile_user.email %></h2>
 			</div>
-			<button>Follow</button>
+			<% if(iAmFollowing){ %>
+			<button
+				class="follow_btn"
+				data-url="/friends/toggle/<%= profile_user._id %>"
+				style="width: 40%"
+			>
+				Unfollow
+			</button>
+			<% }else{ %>
+			<button
+				class="follow_btn"
+				style="width: 40%"
+				data-url="/friends/toggle/<%= profile_user._id %>"
+			>
+				Follow
+			</button>
+			<% } %>
 		</div>
 	</div>
 	<% } %>

@@ -46,6 +46,12 @@ const userSchema = new mongoose.Schema(
 				ref: "GenreUserRelation",
 			},
 		],
+		friendships: [
+			{
+				type: mongoose.Schema.Types.ObjectId,
+				ref: "Friendship",
+			},
+		],
 	},
 	{
 		timestamps: true,

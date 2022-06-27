@@ -2,6 +2,7 @@ const { validationResult } = require("express-validator");
 const User = require("../models/user");
 const Genre = require("../models/genre");
 const GenreUserRelation = require("../models/genreUserRelation");
+const Friendship = require("../models/friendship");
 const fs = require("fs");
 const path = require("path");
 
@@ -22,12 +23,45 @@ module.exports.likedSongs = (req, res) => {
 module.exports.profile = async (req, res) => {
 	try {
 		const id = req.params.id;
+		let iAmFollowing = false;
+
 		const user = await User.findById(id);
-		const users = await User.find({});
+
+		const followersList = await Friendship.find({
+			to_user: req.user.id,
+		}).populate({
+			path: "from_user",
+			select: "-password -__v",
+		});
+
+		let followers = followersList.map((friendship) => {
+			return friendship.from_user;
+		});
+
+		const followingList = await Friendship.find({
+			from_user: req.user.id,
+		}).populate({
+			path: "to_user",
+			select: "-password -__v",
+		});
+
+		let following = followingList.map((friendship) => {
+			return friendship.to_user;
+		});
+
+		const friendship = await Friendship.findOne({
+			from_user: req.user._id,
+			to_user: user._id,
+		});
+
+		if (friendship) iAmFollowing = true;
+
 		return res.render("user_profile", {
 			title: "Profile",
 			profile_user: user,
-			all_users: users,
+			followers: followers,
+			following: following,
+			iAmFollowing: iAmFollowing,
 		});
 	} catch (error) {
 		console.log("Error in fetching the user profile !!!");
