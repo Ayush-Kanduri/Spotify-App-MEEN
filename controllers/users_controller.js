@@ -3,6 +3,7 @@ const User = require("../models/user");
 const Genre = require("../models/genre");
 const GenreUserRelation = require("../models/genreUserRelation");
 const Friendship = require("../models/friendship");
+const Like = require("../models/like");
 const fs = require("fs");
 const path = require("path");
 
@@ -14,10 +15,27 @@ module.exports.library = (req, res) => {
 	});
 };
 
-module.exports.likedSongs = (req, res) => {
-	return res.render("liked_songs", {
-		title: "Liked Songs",
-	});
+module.exports.likedSongs = async (req, res) => {
+	try {
+		const likedTracks = await Like.find({
+			user: req.user.id,
+			onModel: "Track",
+		}).populate({
+			path: "likeable",
+			populate: {
+				path: "artist",
+			},
+		});
+
+		return res.render("liked_songs", {
+			title: "Liked Songs",
+			likedTracks: likedTracks,
+		});
+	} catch (error) {
+		console.log("Error in fetching the liked songs !!!");
+		req.flash("error", "Error in fetching the liked songs !!!");
+		return res.redirect("back");
+	}
 };
 
 module.exports.profile = async (req, res) => {

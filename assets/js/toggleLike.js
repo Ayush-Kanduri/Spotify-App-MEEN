@@ -35,6 +35,10 @@ class Like {
 		}).show();
 	}
 	configureLike(liked, likesCount, innerSelf) {
+		if (innerSelf.getAttribute("data-liked")) {
+			innerSelf.parentElement.remove();
+			return;
+		}
 		if (liked) innerSelf.style.color = "#1ed15e";
 		if (liked) likesCount++;
 		if (!liked) innerSelf.style.color = "#fff";
