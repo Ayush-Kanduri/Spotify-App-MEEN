@@ -17,6 +17,12 @@ const existingPlaylistSchema = new mongoose.Schema(
 				ref: "ExistingPlaylistTrackRelation",
 			},
 		],
+		likes: [
+			{
+				type: mongoose.Schema.Types.ObjectId,
+				ref: "Like",
+			},
+		],
 	},
 	{ timestamps: true }
 );

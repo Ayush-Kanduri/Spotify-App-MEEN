@@ -28,7 +28,7 @@
 		+ p {
 			flex: 0.5;
 			+ i:hover {
-				color: var(--logo-color);
+				color: var(--logo-color) !important;
 			}
 			+ i + p {
 				margin-left: 20px;

@@ -20,6 +20,12 @@ const playlistSchema = new mongoose.Schema(
 				ref: "PlaylistTrackRelation",
 			},
 		],
+		likes: [
+			{
+				type: mongoose.Schema.Types.ObjectId,
+				ref: "Like",
+			},
+		],
 	},
 	{ timestamps: true }
 );

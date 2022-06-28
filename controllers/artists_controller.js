@@ -12,18 +12,44 @@ module.exports.show = async (req, res) => {
 						path: "artist",
 					},
 				},
+				populate: {
+					path: "likes",
+					populate: {
+						path: "user",
+					},
+				},
+			})
+			.populate({
+				path: "likes",
+				populate: {
+					path: "user",
+				},
 			});
 
 		let name = artist.name;
-		let artists = await Artist.find({ name }).populate({
-			path: "tracks",
-			populate: {
-				path: "album",
+		let artists = await Artist.find({ name })
+			.populate({
+				path: "tracks",
 				populate: {
-					path: "artist",
+					path: "album",
+					populate: {
+						path: "artist",
+					},
 				},
-			},
-		});
+				populate: {
+					path: "likes",
+					populate: {
+						path: "user",
+					},
+				},
+			})
+			.populate({
+				path: "likes",
+				populate: {
+					path: "user",
+				},
+			})
+			.populate("albums");
 
 		if (artists.length > 1) {
 			artist = artist.toObject();
@@ -35,9 +61,14 @@ module.exports.show = async (req, res) => {
 			});
 		}
 
+		let artistLikes = artist.likes.filter(
+			(like) => like.user._id.toString() === req.user._id.toString()
+		);
+
 		return res.render("artist_page", {
 			title: "Artist",
 			artist: artist,
+			artistLikes: artistLikes,
 		});
 	} catch (error) {
 		console.log(error);

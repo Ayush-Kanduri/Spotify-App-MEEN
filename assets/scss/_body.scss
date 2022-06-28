@@ -89,7 +89,7 @@
 					color: var(--logo-color);
 					+ i:hover {
 						transition: 100ms color ease-in;
-						color: var(--logo-color);
+						color: var(--logo-color) !important;
 					}
 					&:hover {
 						transition: 100ms transform ease-in;

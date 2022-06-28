@@ -1,4 +1,5 @@
 <link rel="stylesheet" href="/css/_body.css" />
+<script defer src="/js/toggleLike.js"></script>
 
 <div class="body">
 	<%- include('_header.ejs'); -%>
@@ -30,7 +31,41 @@
 		<div class="body__songs">
 			<div class="body__icons">
 				<i class="fa-solid fa-circle-play body__shuffle"></i>
-				<i class="fa-solid fa-heart" style="font-size: xx-large"></i>
+				<% if(ePlaylist){ 
+					if(playlistLikes.length > 0){ %>
+				<i
+					class="fa-solid fa-heart toggle-like-button"
+					style="font-size: xx-large; color: #1ed15e"
+					data-likes="<%= playlist.likes.length %>"
+					data-url="/likes/toggle/?id=<%= playlist._id %>&type=ExistingPlaylist"
+					data-type="ExistingPlaylist"
+				></i>
+				<% }else{ %>
+				<i 
+					class="fa-solid fa-heart toggle-like-button"
+					style="font-size: xx-large; color: #fff"
+					data-likes="<%= playlist.likes.length %>"
+					data-url="/likes/toggle/?id=<%= playlist._id %>&type=ExistingPlaylist"
+					data-type="ExistingPlaylist"
+				></i>
+				<% }
+				}else{ if(playlistLikes.length > 0){ %>
+					<i
+					class="fa-solid fa-heart toggle-like-button"
+					style="font-size: xx-large; color: #1ed15e"
+					data-likes="<%= playlist.likes.length %>"
+					data-url="/likes/toggle/?id=<%= playlist._id %>&type=Playlist"
+					data-type="Playlist"
+				></i>
+				<% }else{ %>
+					<i
+					class="fa-solid fa-heart toggle-like-button"
+					style="font-size: xx-large; color: #fff"
+					data-likes="<%= playlist.likes.length %>"
+					data-url="/likes/toggle/?id=<%= playlist._id %>&type=Playlist"
+					data-type="Playlist"
+				></i>
+				<% }} %>
 				<i class="fa-solid fa-ellipsis"></i>
 			</div>
 			<%- include('_songRow.ejs'); -%>

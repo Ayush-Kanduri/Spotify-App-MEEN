@@ -24,7 +24,7 @@
     .songRow .songRow__info + p {
       flex: 0.5; }
       .songRow .songRow__info + p + i:hover {
-        color: var(--logo-color); }
+        color: var(--logo-color) !important; }
       .songRow .songRow__info + p + i + p {
         margin-left: 20px; }
   .songRow.songRow:last-of-type {

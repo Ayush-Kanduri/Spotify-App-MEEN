@@ -20,6 +20,12 @@ const artistSchema = new mongoose.Schema(
 		thumbnail: {
 			type: String,
 		},
+		likes: [
+			{
+				type: mongoose.Schema.Types.ObjectId,
+				ref: "Like",
+			},
+		],
 	},
 	{ timestamps: true }
 );

@@ -74,7 +74,7 @@
           color: var(--logo-color); }
           .body .body__songs .body__icons i.body__shuffle + i:hover {
             transition: 100ms color ease-in;
-            color: var(--logo-color); }
+            color: var(--logo-color) !important; }
           .body .body__songs .body__icons i.body__shuffle:hover {
             transition: 100ms transform ease-in;
             transform: scale(1.08); }

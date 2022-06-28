@@ -50,6 +50,12 @@ const trackSchema = new mongoose.Schema(
 				type: String,
 			},
 		],
+		likes: [
+			{
+				type: mongoose.Schema.Types.ObjectId,
+				ref: "Like",
+			},
+		],
 	},
 	{ timestamps: true }
 );

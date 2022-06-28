@@ -15,17 +15,37 @@ module.exports.show = async (req, res) => {
 			{
 				path: "artist",
 			},
-		];
-		let ePlaylist = await ExistingPlaylist.findById(req.params.id).populate({
-			path: "existingPlaylistTrackRelations",
-			populate: {
-				path: "track",
-				populate: query,
+			{
+				path: "likes",
+				populate: {
+					path: "user",
+				},
 			},
-		});
+		];
+		let ePlaylist = await ExistingPlaylist.findById(req.params.id)
+			.populate({
+				path: "existingPlaylistTrackRelations",
+				populate: {
+					path: "track",
+					populate: query,
+				},
+			})
+			.populate({
+				path: "likes",
+				populate: {
+					path: "user",
+				},
+			});
+
+		let playlistLikes = ePlaylist.likes.filter(
+			(like) => like.user._id.toString() === req.user._id.toString()
+		);
+
 		return res.render("user_playlist", {
 			title: "Playlist",
 			playlist: ePlaylist,
+			playlistLikes: playlistLikes,
+			ePlaylist: true,
 		});
 	} catch (error) {
 		console.log(error);
@@ -134,17 +154,37 @@ module.exports.custom = async (req, res) => {
 			{
 				path: "artist",
 			},
-		];
-		let playlist = await Playlist.findById(req.params.id).populate({
-			path: "playlistTrackRelations",
-			populate: {
-				path: "track",
-				populate: query,
+			{
+				path: "likes",
+				populate: {
+					path: "user",
+				},
 			},
-		});
+		];
+		let playlist = await Playlist.findById(req.params.id)
+			.populate({
+				path: "playlistTrackRelations",
+				populate: {
+					path: "track",
+					populate: query,
+				},
+			})
+			.populate({
+				path: "likes",
+				populate: {
+					path: "user",
+				},
+			});
+
+		let playlistLikes = playlist.likes.filter(
+			(like) => like.user._id.toString() === req.user._id.toString()
+		);
+
 		return res.render("user_playlist", {
 			title: "Custom Playlist",
 			playlist: playlist,
+			playlistLikes: playlistLikes,
+			ePlaylist: false,
 		});
 	} catch (error) {
 		console.log(error);

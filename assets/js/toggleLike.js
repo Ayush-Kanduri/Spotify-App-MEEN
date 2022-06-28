@@ -1,20 +1,20 @@
-class Friendship {
+class Like {
 	constructor(element) {
 		this.toggler = element;
-		this.toggleFriendship(this.toggler);
+		this.toggleLike(this.toggler);
 	}
-	toggleFriendship(toggler) {
+	toggleLike(toggler) {
 		const self = this;
 		toggler.addEventListener("click", async (e) => {
 			e.preventDefault();
 			e.stopPropagation();
 			const innerSelf = e.target;
+			let likesCount = innerSelf.getAttribute("data-likes");
 			const url = innerSelf.getAttribute("data-url");
 			const data = await self.fetchData(url, "POST");
 			if (data.response === "error") return;
 			self.notify(data.message, data.response);
-			if (data.data.unfriended) innerSelf.textContent = "Follow";
-			if (!data.data.unfriended) innerSelf.textContent = "Unfollow";
+			self.configureLike(data.data.liked, likesCount, innerSelf);
 		});
 	}
 	async fetchData(url, method, body = {}) {
@@ -34,12 +34,21 @@ class Friendship {
 			timeout: 3000,
 		}).show();
 	}
+	configureLike(liked, likesCount, innerSelf) {
+		if (liked) innerSelf.style.color = "#1ed15e";
+		if (liked) likesCount++;
+		if (!liked) innerSelf.style.color = "#fff";
+		if (!liked) likesCount--;
+		innerSelf.setAttribute("data-likes", likesCount);
+	}
 }
 
-try {
-	for (let btn of document.getElementsByClassName("follow_btn")) {
-		const friendship = new Friendship(btn);
+{
+	try {
+		for (let btn of document.getElementsByClassName("toggle-like-button")) {
+			const like = new Like(btn);
+		}
+	} catch (error) {
+		console.log(error);
 	}
-} catch (error) {
-	console.log(error);
 }
