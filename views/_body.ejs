@@ -7,13 +7,24 @@
 	<div class="home">
 		<h1>Trending Songs</h1>
 		<div class="home__trendingSongs">
-			<div class="song">
-				<div class="album"></div>
+			<% try{ for(let track of trendingTracks){ %>
+			<div
+				class="song playable-tracks"
+				data-song-thumbnail="<%= track.thumbnail %>"
+				data-song-name="<%= track.name %>"
+				data-song-artist="<%= track.artist.name %>"
+				data-song-url="<%= track.url %>"
+			>
+				<div
+					class="album"
+					style="background-image: url('<%= track.thumbnail %>')"
+				></div>
 				<div class="songInfo">
-					<h4>Pasoori</h4>
-					<p>Shae Gill, Ali Sethi</p>
+					<h4><%= track.name %></h4>
+					<p><%= track.artist.name %></p>
 				</div>
 			</div>
+			<% }}catch(err){} %>
 		</div>
 
 		<h1>Albums</h1>

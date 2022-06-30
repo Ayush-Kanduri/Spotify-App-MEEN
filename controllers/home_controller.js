@@ -34,14 +34,19 @@ module.exports.home = async (req, res) => {
 					path: "genre",
 				},
 			});
-		//get the tracks with maximum likes
-		// let maxLikes = await Like.find({})
-		// 	.populate("likeable")
-		// 	.sort({ likes: -1 })
-		// 	.limit(10);
-		// maxLikes = maxLikes.map((like) => {
-		// 	return like.likeable;
-		// });
+		let tracksWithMaxLikes = await Track.find({})
+			.populate("artist album likes")
+			.populate({
+				path: "existingPlaylistTrackRelations",
+				populate: {
+					path: "existingPlaylist",
+				},
+			});
+		let topFiveLikes = tracksWithMaxLikes
+			.sort((a, b) => {
+				return b.likes.length - a.likes.length;
+			})
+			.slice(0, 5);
 
 		for (let i = 0; i < artists.length; i++) {
 			let item = artists[i];
@@ -87,6 +92,7 @@ module.exports.home = async (req, res) => {
 				all_albums: albums,
 				current_user: user,
 				new_releases: newReleases,
+				trendingTracks: topFiveLikes,
 				// playlists: playLists ? playLists : null,
 			});
 		}
