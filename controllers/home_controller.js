@@ -1,9 +1,9 @@
 const User = require("../models/user");
-const Playlist = require("../models/playlist");
 const ExistingPlaylist = require("../models/existingPlaylist");
 const Track = require("../models/track");
 const Artist = require("../models/artist");
 const Album = require("../models/album");
+const Like = require("../models/like");
 
 module.exports.home = async (req, res) => {
 	try {
@@ -34,6 +34,14 @@ module.exports.home = async (req, res) => {
 					path: "genre",
 				},
 			});
+		//get the tracks with maximum likes
+		// let maxLikes = await Like.find({})
+		// 	.populate("likeable")
+		// 	.sort({ likes: -1 })
+		// 	.limit(10);
+		// maxLikes = maxLikes.map((like) => {
+		// 	return like.likeable;
+		// });
 
 		for (let i = 0; i < artists.length; i++) {
 			let item = artists[i];

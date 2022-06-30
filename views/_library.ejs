@@ -1,5 +1,7 @@
 <link rel="stylesheet" href="/css/_body.css" />
 
+<audio src="" hidden></audio>
+
 <div class="body">
 	<%- include('_header.ejs'); -%>
 	<div class="library">
@@ -41,7 +43,13 @@
 		<h1>My Songs</h1>
 		<div class="library__songs">
 			<% try{for(let track of tracks){ %>
-			<div class="song">
+			<div
+				class="song playable-tracks"
+				data-song-thumbnail="<%= track.thumbnail %>"
+				data-song-name="<%= track.name %>"
+				data-song-artist="<%= track.artist.name %>"
+				data-song-url="<%= track.url %>"
+			>
 				<div
 					class="album"
 					style="background-image: url('<%= track.thumbnail %>')"
