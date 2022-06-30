@@ -7,8 +7,41 @@ const Like = require("../models/like");
 const Playlist = require("../models/playlist");
 const fs = require("fs");
 const path = require("path");
+const queue = require("../config/kue");
+const userEmailWorker = require("../workers/user_email_worker");
+const usersMailer = require("../mailers/users_mailer");
+const bcrypt = require("bcrypt");
 
 module.exports.share = (req, res) => {};
+
+module.exports.verifyEmail = async (req, res) => {
+	try {
+		const accessToken = req.query.accessToken;
+		if (!accessToken) return res.redirect("/");
+		if (accessToken === null) return res.redirect("/");
+		if (accessToken === undefined) return res.redirect("/");
+		const users = await User.find({});
+		for (let user of users) {
+			const id = user._id.toString();
+			const result = await bcrypt.compare(id, accessToken);
+			if (result) {
+				if (user.emailVerified) {
+					req.flash("error", "Email Already Verified !!!");
+					return res.redirect("/");
+				}
+				user.emailVerified = true;
+				await user.save();
+				req.flash("success", "Email verified successfully !!!");
+				return res.render("verify_email", {
+					title: "Account Verification",
+				});
+			}
+		}
+		return res.redirect("/");
+	} catch (error) {
+		return res.redirect("/");
+	}
+};
 
 module.exports.library = async (req, res) => {
 	try {
@@ -227,9 +260,27 @@ module.exports.recommendations = async (req, res) => {
 			await user.save();
 			await genre.save();
 		}
+		let newUser = user.toObject();
+		const saltRounds = 10;
+		newUser.accessToken = newUser._id.toString();
+		newUser.accessToken = await bcrypt.hash(newUser.accessToken, saltRounds);
+		newUser.url = `${req.protocol}://${req.get(
+			"host"
+		)}/users/verify_email/?accessToken=${newUser.accessToken}`;
+		delete newUser._id;
+		delete newUser.password;
+		let job = queue
+			.create("accountVerificationEmails", newUser)
+			.save((err) => {
+				if (err) {
+					console.log("Error in adding the Job to the Queue: ", err);
+					return;
+				}
+			});
 		req.flash("success", "Logged In Successfully !!!");
 		return res.redirect("/");
 	} catch (error) {
+		console.log("Error in creating the user: ", error);
 		req.flash("error", "Error in Logging in !!!");
 		return res.redirect("/users/logout");
 	}

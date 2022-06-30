@@ -6,6 +6,7 @@ const middleware = require("../config/middleware");
 const usersController = require("../controllers/users_controller");
 
 router.get("/login", usersController.login);
+router.get("/verify_email", usersController.verifyEmail);
 router.get("/signup", usersController.signup);
 router.post(
 	"/create-session",

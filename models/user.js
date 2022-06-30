@@ -52,6 +52,10 @@ const userSchema = new mongoose.Schema(
 				ref: "Friendship",
 			},
 		],
+		emailVerified: {
+			type: Boolean,
+			default: false,
+		},
 	},
 	{
 		timestamps: true,
