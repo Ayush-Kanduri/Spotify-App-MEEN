@@ -4,15 +4,72 @@ const Genre = require("../models/genre");
 const GenreUserRelation = require("../models/genreUserRelation");
 const Friendship = require("../models/friendship");
 const Like = require("../models/like");
+const Playlist = require("../models/playlist");
 const fs = require("fs");
 const path = require("path");
 
 module.exports.share = (req, res) => {};
 
-module.exports.library = (req, res) => {
-	return res.render("user_library", {
-		title: "Your Library",
-	});
+module.exports.library = async (req, res) => {
+	try {
+		const user = await User.findById(req.user.id).populate("playlists");
+		const likedAlbums = await Like.find({
+			user: req.user.id,
+			onModel: "Album",
+		}).populate("likeable");
+		const likedArtists = await Like.find({
+			user: req.user.id,
+			onModel: "Artist",
+		}).populate("likeable");
+		const likedTracks = await Like.find({
+			user: req.user.id,
+			onModel: "Track",
+		}).populate({
+			path: "likeable",
+			populate: [
+				{
+					path: "artist",
+				},
+				{
+					path: "album",
+				},
+			],
+		});
+		let likedPlaylists = await Like.find({
+			user: req.user.id,
+			onModel: "ExistingPlaylist",
+		}).populate("likeable");
+
+		let createdPlaylists = user.playlists;
+
+		likedPlaylists = likedPlaylists.filter((like) => like.likeable !== null);
+		likedPlaylists = likedPlaylists.map((like) => like.likeable);
+		createdPlaylists = createdPlaylists.filter(
+			(playlist) => playlist !== null
+		);
+		const tracks = likedTracks.map((like) => {
+			return like.likeable;
+		});
+		const artists = likedArtists.map((like) => {
+			return like.likeable;
+		});
+		const albums = likedAlbums.map((like) => {
+			return like.likeable;
+		});
+
+		return res.render("user_library", {
+			title: "Your Library",
+			ePlaylists: likedPlaylists,
+			playlists: createdPlaylists,
+			tracks: tracks,
+			artists: artists,
+			albums: albums,
+		});
+	} catch (error) {
+		console.log(error);
+		req.flash("error", "Error in fetching the library songs !!!");
+		return res.redirect("back");
+	}
 };
 
 module.exports.likedSongs = async (req, res) => {

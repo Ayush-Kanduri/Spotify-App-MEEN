@@ -5,40 +5,89 @@
 	<div class="library">
 		<h1>My Playlists</h1>
 		<div class="library__playlists playlist_click">
-			<div class="song playlist_click" onclick="window.location.href='/playlists';">
-				<div class="album playlist_click"></div>
+			<% try{for(let playlist of ePlaylists){ %>
+			<div
+				class="song playlist_click"
+				onclick="window.location.href='/playlists/<%= playlist._id %>';"
+			>
+				<div class="album playlist_click">
+					<img
+						src="<%= playlist.thumbnail %>"
+						alt="<%= playlist.name %>"
+					/>
+				</div>
 				<div class="songInfo playlist_click">
-					<h4 class="playlist_click">Chill Vibe</h4>
+					<h4 class="playlist_click"><%= playlist.name %></h4>
 				</div>
 			</div>
+			<% }}catch(err){} %> <% try{for(let playlist of playlists){ %>
+			<div
+				class="song playlist_click"
+				onclick="window.location.href='/playlists/custom/<%= playlist._id %>';"
+			>
+				<div class="album playlist_click">
+					<img
+						src="<%= playlist.thumbnail %>"
+						alt="<%= playlist.name %>"
+					/>
+				</div>
+				<div class="songInfo playlist_click">
+					<h4 class="playlist_click"><%= playlist.name %></h4>
+				</div>
+			</div>
+			<% }}catch(err){} %>
 		</div>
+
 		<h1>My Songs</h1>
 		<div class="library__songs">
+			<% try{for(let track of tracks){ %>
 			<div class="song">
-				<div class="album"></div>
+				<div
+					class="album"
+					style="background-image: url('<%= track.thumbnail %>')"
+				></div>
 				<div class="songInfo">
-					<h4>Pasoori</h4>
-					<p>Shae Gill, Ali Sethi</p>
+					<h4><%= track.name %></h4>
+					<p><%= track.artist.name %></p>
 				</div>
 			</div>
+			<% }}catch(err){} %>
 		</div>
+
 		<h1>My Artists</h1>
 		<div class="library__artists">
-			<div class="song">
-				<div class="album"></div>
+			<% try{for(let artist of artists){ %>
+			<div
+				class="song"
+				onclick="window.location.href='/artists/<%= artist._id %>';"
+			>
+				<div
+					class="album"
+					style="background-image: url('<%= artist.thumbnail %>')"
+				></div>
 				<div class="songInfo">
-					<h4>Ali Sethi</h4>
+					<h4><%= artist.name %></h4>
 				</div>
 			</div>
+			<% }}catch(err){} %>
 		</div>
+
 		<h1>My Albums</h1>
 		<div class="library__albums">
-			<div class="song">
-				<div class="album"></div>
+			<% try{for(let album of albums){ %>
+			<div
+				class="song"
+				onclick="window.location.href='/albums/<%= album._id %>';"
+			>
+				<div
+					class="album"
+					style="background-image: url('<%= album.thumbnail %>')"
+				></div>
 				<div class="songInfo">
-					<h4>Coke Studio</h4>
+					<h4><%= album.name %></h4>
 				</div>
 			</div>
+			<% }}catch(err){} %>
 		</div>
 	</div>
 </div>
