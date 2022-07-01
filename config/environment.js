@@ -11,7 +11,7 @@ const accessLogStream = rfs.createStream("access.log", {
 });
 
 const development = {
-	name: "development",
+	name: process.env.SC_DEVELOPMENT_ENVIRONMENT,
 	asset_path: process.env.SC_DEVELOPMENT_ASSET_PATH,
 	session_cookie_key: process.env.SC_DEVELOPMENT_SESSION_COOKIE_KEY,
 	db: process.env.SC_DEVELOPMENT_DB,
@@ -31,7 +31,7 @@ const development = {
 	spotify_client_id: process.env.SC_DEVELOPMENT_SPOTIFY_CLIENT_ID,
 	spotify_client_secret: process.env.SC_DEVELOPMENT_SPOTIFY_CLIENT_SECRET,
 	spotify_callback_url: process.env.SC_DEVELOPMENT_SPOTIFY_CALLBACK_URL,
-	// jwt_secret: process.env.SC_DEVELOPMENT_JWT_SECRET,
+	jwt_secret: process.env.SC_DEVELOPMENT_JWT_SECRET,
 	express_server_port: process.env.SC_DEVELOPMENT_EXPRESS_SERVER_PORT,
 	email_sender: process.env.SC_DEVELOPMENT_FROM_EMAIL,
 	morgan: {
