@@ -10,6 +10,7 @@ const albumsRouterFile = require("./albums");
 const friendsRouterFile = require("./friends");
 const likesRouterFile = require("./likes");
 const forgotPasswordRouterFile = require("./forgot_password");
+const api = require("./api");
 
 router.use("/", homeRouterFile);
 router.use("/users", usersRouterFile);
@@ -20,5 +21,6 @@ router.use("/albums", albumsRouterFile);
 router.use("/friends", friendsRouterFile);
 router.use("/likes", likesRouterFile);
 router.use("/forgot-password", forgotPasswordRouterFile);
+router.use("/api", api);
 
 module.exports = router;
