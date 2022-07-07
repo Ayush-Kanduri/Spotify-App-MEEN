@@ -31,7 +31,8 @@ const development = {
 	spotify_client_id: process.env.SC_DEVELOPMENT_SPOTIFY_CLIENT_ID,
 	spotify_client_secret: process.env.SC_DEVELOPMENT_SPOTIFY_CLIENT_SECRET,
 	spotify_callback_url: process.env.SC_DEVELOPMENT_SPOTIFY_CALLBACK_URL,
-	jwt_secret: process.env.SC_DEVELOPMENT_JWT_SECRET,
+	jwt_access_token: process.env.SC_DEVELOPMENT_JWT_ACCESS_TOKEN,
+	jwt_refresh_token: process.env.SC_DEVELOPMENT_JWT_REFRESH_TOKEN,
 	express_server_port: process.env.SC_DEVELOPMENT_EXPRESS_SERVER_PORT,
 	email_sender: process.env.SC_DEVELOPMENT_FROM_EMAIL,
 	morgan: {

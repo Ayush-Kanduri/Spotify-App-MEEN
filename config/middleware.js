@@ -1,6 +1,7 @@
 const { body } = require("express-validator");
 const path = require("path");
 const fs = require("fs");
+const User = require("../models/user");
 const Track = require("../models/track");
 const Album = require("../models/album");
 const Artist = require("../models/artist");
@@ -8,6 +9,9 @@ const ExistingPlaylist = require("../models/existingPlaylist");
 const Genre = require("../models/genre");
 const ExistingPlaylistTrackRelation = require("../models/existingPlaylistTrackRelation");
 const GenreTrackRelation = require("../models/genreTrackRelation");
+const jwt = require("jsonwebtoken");
+const env = require("./environment");
+const Redis = require("ioredis");
 
 //Sets the Flash Message into the Response Session
 module.exports.setFlash = (req, res, next) => {
@@ -120,6 +124,89 @@ module.exports.validate = (method) => {
 	}
 };
 
+//Re-Generates Access Token using Refresh Token
+module.exports.renewAccessToken = async (req, res, next) => {
+	//Get the Tokens: Access Token & Refresh Token, from the Cookies
+	const accessToken = req.cookies.accessToken;
+	const refreshToken = req.cookies.refreshToken;
+
+	//Get the Redis Client
+	let redis = new Redis();
+	//Get the Redis List of Refresh Tokens
+	let refreshTokens = await redis.lrange("refreshTokens", 0, -1);
+	//Disconnect from Redis
+	redis.disconnect();
+
+	try {
+		//Verify the Access Token
+		let user = jwt.verify(accessToken, env.jwt_access_token);
+		//If User is found in the Access Token, then Go Further to the Passport Authentication
+		if (user) {
+			req.headers.authorization = `Bearer ${accessToken}`;
+			return next();
+		}
+	} catch (error) {
+		//If the Access Token has expired, then Generate a New Access Token
+		if (
+			error.message == "jwt expired" ||
+			error.message == "jwt must be provided"
+		) {
+			await generateAccessToken(refreshToken, refreshTokens, req, res, next);
+		}
+		//If the User is not found in the Access Token & the Access Token is Invalid
+		else {
+			return res.status(401).json({
+				message: "Invalid Access Token",
+				error: error.message,
+			});
+		}
+	}
+};
+
+//FUNCTION :: Generates a New Access Token using the Refresh Token
+const generateAccessToken = async (
+	refreshToken,
+	refreshTokens,
+	req,
+	res,
+	next
+) => {
+	try {
+		//Check if the Refresh Token Exists or it Exists in the Redis List
+		if (!refreshToken || !refreshTokens.includes(refreshToken)) {
+			return res.status(403).json({
+				message: "Invalid Refresh Token. Please Login Again!",
+			});
+		}
+
+		//Check if the Refresh Token is Valid
+		let innerUser = jwt.verify(refreshToken, env.jwt_refresh_token);
+		//Check if the User from the Refresh Token Exists
+		let sameUser = await User.findById(innerUser._id);
+		//Create a New Access Token
+		const accessToken = jwt.sign(sameUser.toJSON(), env.jwt_access_token, {
+			expiresIn: "10s",
+		});
+
+		//Store the New Access Token in the Cookie
+		res.cookie("accessToken", accessToken, {
+			httpOnly: true,
+			expires: new Date(Date.now() + 10000),
+			sameSite: "strict",
+		});
+		//Set the New Access Token in the Request Headers
+		req.headers.authorization = `Bearer ${accessToken}`;
+		//Go Further to the Passport Authentication
+		return next();
+	} catch (error) {
+		//If the Refresh Token is not Valid
+		return res.status(403).json({
+			message: "Invalid Token. Please Login Again!",
+			error: error.message,
+		});
+	}
+};
+
 const fileHound = () => {
 	// const fileHound = FileHound.create();
 	// fileHound
@@ -174,7 +261,7 @@ const setGenre = async () => {
 				await track.save();
 				await genre.save();
 			}
-		} 
+		}
 	} catch (error) {
 		console.log(error);
 		return;
