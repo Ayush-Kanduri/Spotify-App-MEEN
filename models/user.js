@@ -56,6 +56,10 @@ const userSchema = new mongoose.Schema(
 			type: Boolean,
 			default: false,
 		},
+		queue: {
+			type: mongoose.Schema.Types.ObjectId,
+			ref: "Queue",
+		},
 	},
 	{
 		timestamps: true,

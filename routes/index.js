@@ -9,6 +9,7 @@ const artistsRouterFile = require("./artists");
 const albumsRouterFile = require("./albums");
 const friendsRouterFile = require("./friends");
 const likesRouterFile = require("./likes");
+const queueRouterFile = require("./queue");
 const forgotPasswordRouterFile = require("./forgot_password");
 const api = require("./api");
 
@@ -20,6 +21,7 @@ router.use("/artists", artistsRouterFile);
 router.use("/albums", albumsRouterFile);
 router.use("/friends", friendsRouterFile);
 router.use("/likes", likesRouterFile);
+router.use("/queue", queueRouterFile);
 router.use("/forgot-password", forgotPasswordRouterFile);
 router.use("/api", api);
 
