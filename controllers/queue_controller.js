@@ -95,9 +95,43 @@ module.exports.previous = async (req, res) => {
 	} catch (error) {}
 };
 
+module.exports.update = async (req, res) => {
+	try {
+		let queue = await Queue.findOne({ user: req.user._id });
+		let { currentTrack, isPlaying, playbarVisible, volume } = req.body;
+		queue.currentTrack = parseInt(currentTrack);
+		queue.isPlaying = isPlaying;
+		queue.playbarVisible = playbarVisible;
+		queue.volume = parseFloat(volume);
+		queue.songs[parseInt(currentTrack)] = req.body.Track;
+		await queue.save();
+		return res.status(200).json({
+			message: "Queue Data Updated Successfully",
+		});
+	} catch (error) {
+		console.log(error);
+		return res.status(500).json({
+			message: "Internal Server Error",
+			error: error.message,
+		});
+	}
+};
+
 module.exports.volume = async (req, res) => {
 	try {
-	} catch (error) {}
+		let queue = await Queue.findOne({ user: req.user._id });
+		queue.volume = parseFloat(req.body.volume);
+		await queue.save();
+		return res.status(200).json({
+			message: "Volume Changed Successfully",
+		});
+	} catch (error) {
+		console.log(error);
+		return res.status(500).json({
+			message: "Internal Server Error",
+			error: error.message,
+		});
+	}
 };
 
 module.exports.clear = async (req, res) => {

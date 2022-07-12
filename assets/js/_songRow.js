@@ -31,15 +31,31 @@
 				const Queue = data.data;
 				({ Tracks, currentTrack, playbarVisible, volume, isPlaying } =
 					Queue);
-				console.log(
-					Tracks,
-					currentTrack,
-					playbarVisible,
-					volume,
-					isPlaying
-				);
+				togglePlayBar(Tracks[currentTrack]);
+				if (playbarVisible && isPlaying) {
+					audio.src = Tracks[currentTrack].url;
+					audio.volume = volume;
+					audio.currentTime = Tracks[currentTrack].currentTime;
+					volumeControl.value = volume * 100;
+					await pause(Tracks[currentTrack]);
+					play_pause.classList.remove("fa-circle-pause");
+					play_pause.classList.add("fa-circle-play");
+				} else if (playbarVisible && !isPlaying) {
+					audio.src = Tracks[currentTrack].url;
+					audio.volume = volume;
+					audio.currentTime = Tracks[currentTrack].currentTime;
+					volumeControl.value = volume * 100;
+					await play(Tracks[currentTrack]);
+					play_pause.classList.remove("fa-circle-play");
+					play_pause.classList.add("fa-circle-pause");
+				}
+				// console.log("Tracks: ", Tracks);
+				// console.log("currentTrack: ", currentTrack);
+				// console.log("playbarVisible: ", playbarVisible);
+				// console.log("volume: ", volume);
+				// console.log("isPlaying: ", isPlaying);
 			} catch (error) {
-				console.log(error);
+				// console.log(error);
 			}
 		};
 
@@ -101,13 +117,6 @@
 					const Queue = data.data;
 					({ Tracks, currentTrack, playbarVisible, volume, isPlaying } =
 						Queue);
-					console.log(
-						Tracks,
-						currentTrack,
-						playbarVisible,
-						volume,
-						isPlaying
-					);
 
 					audio.src = Tracks[currentTrack].url;
 					audio.volume = volume;
@@ -157,6 +166,19 @@
 			Track.currentTime = audio.currentTime;
 			Track.isPlaying = !audio.paused;
 			Track.ended = audio.ended;
+			await fetchAPI("/queue/update", {
+				method: "PUT",
+				headers: {
+					"Content-Type": "application/json",
+				},
+				body: JSON.stringify({
+					Track,
+					currentTrack,
+					playbarVisible,
+					volume,
+					isPlaying,
+				}),
+			});
 		};
 
 		const pause = async (Track) => {
@@ -167,6 +189,19 @@
 			Track.currentTime = audio.currentTime;
 			Track.isPlaying = !audio.paused;
 			Track.ended = audio.ended;
+			await fetchAPI("/queue/update", {
+				method: "PUT",
+				headers: {
+					"Content-Type": "application/json",
+				},
+				body: JSON.stringify({
+					Track,
+					currentTrack,
+					playbarVisible,
+					volume,
+					isPlaying,
+				}),
+			});
 		};
 
 		const stop = async () => {
@@ -219,12 +254,32 @@
 				audio.volume = e.target.value / 100;
 			}
 			volume = audio.volume;
+			volumeControl.value = volume * 100;
+			await fetchAPI("/queue/volume", {
+				method: "PUT",
+				headers: {
+					"Content-Type": "application/json",
+				},
+				body: JSON.stringify({
+					volume: volume,
+				}),
+			});
 			e.preventDefault();
 		};
 
 		const volumeChange = async (e) => {
 			audio.volume = e.target.value / 100;
 			volume = audio.volume;
+			volumeControl.value = volume * 100;
+			await fetchAPI("/queue/volume", {
+				method: "PUT",
+				headers: {
+					"Content-Type": "application/json",
+				},
+				body: JSON.stringify({
+					volume: volume,
+				}),
+			});
 		};
 
 		const playToggle = async (Track, e) => {
