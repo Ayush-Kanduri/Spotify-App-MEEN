@@ -6,12 +6,10 @@ const queueController = require("../controllers/queue_controller");
 
 router.get("/", passport.checkAuthentication, queueController.getQueueData);
 router.post("/add", passport.checkAuthentication, queueController.addQueueData);
+router.put("/shuffle", passport.checkAuthentication, queueController.shuffle);
 router.put("/volume", passport.checkAuthentication, queueController.volume);
+router.put("/repeat", passport.checkAuthentication, queueController.loop);
 router.put("/update", passport.checkAuthentication, queueController.update);
 router.delete("/clear", passport.checkAuthentication, queueController.clear);
-
-router.get("/pause", passport.checkAuthentication, queueController.pause);
-router.get("/next", passport.checkAuthentication, queueController.pause);
-router.get("/previous", passport.checkAuthentication, queueController.pause);
 
 module.exports = router;

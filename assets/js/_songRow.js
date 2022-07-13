@@ -5,6 +5,7 @@
 		let playbarVisible;
 		let volume;
 		let isPlaying;
+		let loop;
 
 		let footer = document.querySelector(".footer");
 		let songs = document.querySelectorAll(".songRow");
@@ -14,6 +15,8 @@
 		let clearQueue = footer.querySelector(".clearQueue");
 		let forward = footer.querySelector(".forward");
 		let backward = footer.querySelector(".backward");
+		let repeat = footer.querySelector(".repeat");
+		let shuffle = footer.querySelector(".shuffle");
 
 		const fetchAPI = async (url, options = {}) => {
 			try {
@@ -29,7 +32,7 @@
 			try {
 				const data = await fetchAPI("/queue");
 				const Queue = data.data;
-				({ Tracks, currentTrack, playbarVisible, volume, isPlaying } =
+				({ Tracks, currentTrack, playbarVisible, volume, isPlaying, loop } =
 					Queue);
 				togglePlayBar(Tracks[currentTrack]);
 				if (playbarVisible && isPlaying) {
@@ -112,11 +115,18 @@
 							playbarVisible: playbarVisible,
 							volume: volume,
 							isPlaying: isPlaying,
+							loop: loop,
 						}),
 					});
 					const Queue = data.data;
-					({ Tracks, currentTrack, playbarVisible, volume, isPlaying } =
-						Queue);
+					({
+						Tracks,
+						currentTrack,
+						playbarVisible,
+						volume,
+						isPlaying,
+						loop,
+					} = Queue);
 
 					audio.src = Tracks[currentTrack].url;
 					audio.volume = volume;
@@ -147,15 +157,79 @@
 			clearQueue.addEventListener("click", async (e) => {
 				await deleteQueue();
 			});
+			repeat.addEventListener("click", async (e) => {
+				await toggleLoop(e);
+			});
+			shuffle.addEventListener("click", async (e) => {
+				await playlistShuffle();
+			});
 			audio.addEventListener("ended", async (e) => {
 				await stop();
 				if (currentTrack === Tracks.length - 1) {
-					await pause(Tracks[currentTrack]);
-					play_pause.classList.remove("fa-circle-pause");
-					play_pause.classList.add("fa-circle-play");
+					if (!loop) {
+						await pause(Tracks[currentTrack]);
+						play_pause.classList.remove("fa-circle-pause");
+						play_pause.classList.add("fa-circle-play");
+					}
 				}
 				await next();
 			});
+		};
+
+		const playlistShuffle = async () => {
+			const FisherYatesAlgorithm = (Tracks) => {
+				let PointerIndex = Tracks.length;
+				let RandomIndex;
+				// While the Array Length or the PointerIndex is greater than 0
+				while (PointerIndex !== 0) {
+					// Pick a RandomIndex between 0 and PointerIndex - 1
+					RandomIndex = Math.floor(Math.random() * PointerIndex);
+					PointerIndex -= 1;
+
+					// Do nothing for the Current Track.
+					if (RandomIndex === currentTrack) continue;
+					if (PointerIndex === currentTrack) continue;
+
+					// Swap the PointerIndex & RandomIndex Elements.
+					[Tracks[PointerIndex], Tracks[RandomIndex]] = [
+						Tracks[RandomIndex],
+						Tracks[PointerIndex],
+					];
+				}
+				return Tracks;
+			};
+			FisherYatesAlgorithm(Tracks);
+			new Noty({
+				theme: "metroui",
+				text: "Playlist Shuffled",
+				type: "success",
+				layout: "topRight",
+				timeout: 3000,
+			}).show();
+			await fetchAPI("/queue/shuffle", {
+				method: "PUT",
+				headers: { "Content-Type": "application/json" },
+				body: JSON.stringify({ Tracks, currentTrack }),
+			});
+		};
+
+		const toggleLoop = async (e) => {
+			loop = !loop;
+			if (loop) e.target.classList.add("footer__green");
+			if (!loop) e.target.classList.remove("footer__green");
+			new Noty({
+				theme: "metroui",
+				text: "Loop is now " + (loop ? "ON" : "OFF"),
+				type: "success",
+				layout: "topRight",
+				timeout: 3000,
+			}).show();
+			const data = await fetchAPI("/queue/repeat", {
+				method: "PUT",
+				headers: { "Content-Type": "application/json" },
+				body: JSON.stringify({ loop }),
+			});
+			loop = data.data.loop;
 		};
 
 		const play = async (Track) => {
@@ -177,6 +251,7 @@
 					playbarVisible,
 					volume,
 					isPlaying,
+					loop,
 				}),
 			});
 		};
@@ -200,6 +275,7 @@
 					playbarVisible,
 					volume,
 					isPlaying,
+					loop,
 				}),
 			});
 		};
@@ -210,9 +286,11 @@
 		};
 
 		const next = async () => {
-			if (currentTrack === Tracks.length - 1) return;
+			if (currentTrack === Tracks.length - 1 && !loop) return;
 			await stop();
-			currentTrack++;
+			if (currentTrack === Tracks.length - 1 && loop) currentTrack = 0;
+			else if (currentTrack !== Tracks.length - 1 && loop) currentTrack++;
+			else if (currentTrack !== Tracks.length - 1 && !loop) currentTrack++;
 			audio.src = Tracks[currentTrack].url;
 			audio.volume = volume;
 			play_pause.classList.remove("fa-circle-play");
@@ -222,9 +300,11 @@
 		};
 
 		const previous = async () => {
-			if (currentTrack === 0) return;
+			if (currentTrack === 0 && !loop) return;
 			await stop();
-			currentTrack--;
+			if (currentTrack === 0 && loop) currentTrack = Tracks.length - 1;
+			else if (currentTrack !== 0 && loop) currentTrack--;
+			else if (currentTrack !== 0 && !loop) currentTrack--;
 			audio.src = Tracks[currentTrack].url;
 			audio.volume = volume;
 			play_pause.classList.remove("fa-circle-play");
@@ -240,6 +320,7 @@
 			playbarVisible = false;
 			volume = 0.1;
 			isPlaying = false;
+			loop = false;
 			await fetchAPI("/queue/clear", { method: "DELETE" });
 			await togglePlayBar();
 		};
@@ -303,6 +384,8 @@
 				album.src = Track.thumbnail;
 				name.textContent = Track.name;
 				artist.textContent = Track.artist;
+				if (loop) repeat.classList.add("footer__green");
+				if (!loop) repeat.classList.remove("footer__green");
 			} else {
 				footer.style.display = "none";
 			}

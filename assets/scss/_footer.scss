@@ -66,6 +66,12 @@
 			}
 			cursor: pointer;
 		}
+		.repeat,
+		.shuffle {
+			&:hover {
+				color: var(--logo-color);
+			}
+		}
 	}
 	.footer_right {
 		width: 33%;

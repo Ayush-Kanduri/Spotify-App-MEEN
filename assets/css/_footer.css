@@ -58,6 +58,9 @@
       .footer .footer_center i:hover {
         transition: transform 0.2s ease-in-out;
         transform: scale(1.2) !important; }
+    .footer .footer_center .repeat:hover,
+    .footer .footer_center .shuffle:hover {
+      color: var(--logo-color); }
   .footer .footer_right {
     width: 33%;
     display: flex;

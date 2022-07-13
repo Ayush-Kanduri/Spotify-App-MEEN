@@ -18,6 +18,11 @@ const queueSchema = new mongoose.Schema(
 			required: true,
 			default: -1,
 		},
+		loop: {
+			type: Boolean,
+			required: true,
+			default: false,
+		},
 		playbarVisible: {
 			type: Boolean,
 			required: true,
