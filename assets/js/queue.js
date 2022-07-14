@@ -8,7 +8,6 @@
 		let loop;
 
 		let footer = document.querySelector(".footer");
-		let songs = document.querySelectorAll(".songRow");
 		let play_pause = footer.querySelector(".play-pause");
 		let audio = document.querySelector("audio");
 		let volumeControl = footer.querySelector(".song_volume");
@@ -17,7 +16,6 @@
 		let backward = footer.querySelector(".backward");
 		let repeat = footer.querySelector(".repeat");
 		let shuffle = footer.querySelector(".shuffle");
-		let bigPlayBtn = document.querySelector(".body__shuffle");
 
 		const fetchAPI = async (url, options = {}) => {
 			try {
@@ -30,36 +28,11 @@
 		};
 
 		const onPageRefresh = () => {
-			window.addEventListener("beforeunload", async function (e) {
+			window.addEventListener("beforeunload", function (e) {
 				e.preventDefault();
-				const data = await fetchAPI("/queue");
-				const Queue = data.data;
-
-				({ Tracks, currentTrack, playbarVisible, volume, isPlaying, loop } =
-					Queue);
-
-				if (isPlaying && Tracks[currentTrack].isPlaying) {
-					Tracks[currentTrack].currentTime = audio.currentTime;
-					Tracks[currentTrack].isPlaying = true;
-					Tracks[currentTrack].duration = audio.duration;
-
-					await fetchAPI("/queue/update", {
-						method: "PUT",
-						headers: { "Content-Type": "application/json" },
-						body: JSON.stringify({
-							Track: Tracks[currentTrack],
-							currentTrack,
-							playbarVisible,
-							volume,
-							isPlaying: true,
-							loop,
-						}),
-					});
-				}
-				return;
-				//For Default Prompt Message//
-				//(e || window.event).returnValue = null;
-				//return null;
+				const a = 23;
+				(e || window.event).returnValue = null;
+				return null;
 			});
 		};
 
@@ -67,23 +40,22 @@
 			try {
 				const data = await fetchAPI("/queue");
 				const Queue = data.data;
-
 				({ Tracks, currentTrack, playbarVisible, volume, isPlaying, loop } =
 					Queue);
-
 				togglePlayBar(Tracks[currentTrack]);
-
-				audio.src = Tracks[currentTrack].url;
-				audio.volume = volume;
-				audio.currentTime = Tracks[currentTrack].currentTime;
-				volumeControl.value = volume * 100;
-				Tracks[currentTrack].duration = audio.duration;
-
 				if (playbarVisible && isPlaying) {
+					audio.src = Tracks[currentTrack].url;
+					audio.volume = volume;
+					audio.currentTime = Tracks[currentTrack].currentTime;
+					volumeControl.value = volume * 100;
 					await pause(Tracks[currentTrack]);
 					play_pause.classList.remove("fa-circle-pause");
 					play_pause.classList.add("fa-circle-play");
 				} else if (playbarVisible && !isPlaying) {
+					audio.src = Tracks[currentTrack].url;
+					audio.volume = volume;
+					audio.currentTime = Tracks[currentTrack].currentTime;
+					volumeControl.value = volume * 100;
 					await play(Tracks[currentTrack]);
 					play_pause.classList.remove("fa-circle-play");
 					play_pause.classList.add("fa-circle-pause");
@@ -138,30 +110,6 @@
 						isPlaying: true,
 					};
 
-					let arr = Tracks.filter(
-						(track) =>
-							track.name.trim().toLowerCase() ===
-							Track.name.trim().toLowerCase()
-					);
-					if (arr.length > 0) {
-						currentTrack = Tracks.findIndex((track) => {
-							return (
-								track.name.trim().toLowerCase() ===
-								Track.name.trim().toLowerCase()
-							);
-						});
-						if (currentTrack === -1) return;
-						audio.src = Tracks[currentTrack].url;
-						audio.volume = volume;
-						await play(Tracks[currentTrack]);
-						await togglePlayBar(Tracks[currentTrack]);
-						if (Tracks[currentTrack].isPlaying) {
-							play_pause.classList.remove("fa-circle-play");
-							play_pause.classList.add("fa-circle-pause");
-						}
-						return;
-					}
-
 					const data = await fetchAPI("/queue/add", {
 						method: "POST",
 						headers: {
@@ -197,9 +145,6 @@
 					}
 				});
 			}
-			bigPlayBtn.addEventListener("click", async (e) => {
-				await playPlaylistQueue();
-			});
 			volumeControl.addEventListener("input", async (e) => {
 				await volumeChange(e);
 			});
@@ -235,59 +180,6 @@
 				}
 				await next();
 			});
-		};
-
-		const fillPlaylistQueue = async (song) => {
-			const name = song.getAttribute("data-song-name");
-			const artist = song.getAttribute("data-song-artist");
-			const url = song.getAttribute("data-song-url");
-			const thumbnail = song.getAttribute("data-song-thumbnail");
-			const duration = 0;
-			const currentTime = 0;
-			const ended = false;
-
-			Tracks.push({
-				name,
-				artist,
-				url,
-				thumbnail,
-				duration,
-				currentTime,
-				ended,
-				isPlaying: true,
-			});
-		};
-
-		const playPlaylistQueue = async () => {
-			await deleteQueue();
-			for (let song of songs) fillPlaylistQueue(song);
-			const data = await fetchAPI("/queue/add-songs", {
-				method: "POST",
-				headers: {
-					"Content-Type": "application/json",
-				},
-				body: JSON.stringify({
-					Tracks: Tracks,
-					currentTrack: currentTrack,
-					playbarVisible: playbarVisible,
-					volume: volume,
-					isPlaying: isPlaying,
-					loop: loop,
-				}),
-			});
-			const Queue = data.data;
-			({ Tracks, currentTrack, playbarVisible, volume, isPlaying, loop } =
-				Queue);
-
-			audio.src = Tracks[currentTrack].url;
-			audio.volume = volume;
-			await play(Tracks[currentTrack]);
-			await togglePlayBar(Tracks[currentTrack]);
-
-			if (Tracks[currentTrack].isPlaying) {
-				play_pause.classList.remove("fa-circle-play");
-				play_pause.classList.add("fa-circle-pause");
-			}
 		};
 
 		const playlistShuffle = async () => {
@@ -395,7 +287,6 @@
 		};
 
 		const stop = async () => {
-			if (!audio.src) return;
 			await audio.pause();
 			audio.currentTime = 0;
 		};

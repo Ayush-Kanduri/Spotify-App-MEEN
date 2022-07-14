@@ -38,6 +38,54 @@ module.exports.getQueueData = async (req, res) => {
 	}
 };
 
+module.exports.addPlaylistQueue = async (req, res) => {
+	try {
+		let user = await User.findById(req.user._id);
+		let queue = await Queue.findOne({ user: req.user._id });
+
+		let { currentTrack, isPlaying, playbarVisible, volume, loop } = req.body;
+		let songs = req.body.Tracks;
+
+		if (!queue) {
+			queue = await Queue.create({
+				user: req.user._id,
+				currentTrack: 0,
+				isPlaying,
+				playbarVisible,
+				volume: parseFloat(volume),
+				loop,
+			});
+		} else {
+			queue.currentTrack = 0;
+			queue.isPlaying = isPlaying;
+			queue.playbarVisible = playbarVisible;
+			queue.volume = parseFloat(volume);
+			queue.loop = loop;
+		}
+		queue.songs = songs;
+		await queue.save();
+		user.queue = queue;
+		await user.save();
+		return res.status(200).json({
+			message: "Playlist Queue Data Added Successfully",
+			data: {
+				Tracks: queue.songs,
+				currentTrack: queue.currentTrack,
+				isPlaying: queue.isPlaying,
+				playbarVisible: queue.playbarVisible,
+				volume: queue.volume,
+				loop: queue.loop,
+			},
+		});
+	} catch (error) {
+		console.log(error);
+		return res.status(500).json({
+			message: "Internal Server Error",
+			error: error.message,
+		});
+	}
+};
+
 module.exports.addQueueData = async (req, res) => {
 	try {
 		let user = await User.findById(req.user._id);
@@ -185,6 +233,11 @@ module.exports.volume = async (req, res) => {
 module.exports.clear = async (req, res) => {
 	try {
 		let queue = await Queue.findOne({ user: req.user._id });
+		if (!queue) {
+			return res.status(200).json({
+				message: "Queue is Empty",
+			});
+		}
 		await User.updateOne({ _id: req.user._id }, { $unset: { queue: "" } });
 		await queue.remove();
 		return res.status(200).json({

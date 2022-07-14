@@ -11,6 +11,7 @@ const queue = require("../config/kue");
 const userEmailWorker = require("../workers/user_email_worker");
 const usersMailer = require("../mailers/users_mailer");
 const bcrypt = require("bcrypt");
+const Queue = require("../models/queue");
 
 module.exports.share = (req, res) => {};
 
@@ -172,7 +173,7 @@ module.exports.profile = async (req, res) => {
 			iAmFollowing: iAmFollowing,
 		});
 	} catch (error) {
-		console.log("Error in fetching the user profile !!!");
+		console.log(error);
 		req.flash("error", "Error in fetching the user profile !!!");
 		return res.redirect("back");
 	}

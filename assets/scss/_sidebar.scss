@@ -1,3 +1,6 @@
+.sidebar::-webkit-scrollbar {
+	display: none;
+}
 .sidebar {
 	height: 100vh;
 	min-height: 100vh;
@@ -7,6 +10,10 @@
 	background-color: var(--background-color);
 	padding-left: 10px;
 	padding-right: 10px;
+	overflow: scroll;
+	> :last-child {
+		margin-bottom: 10%;
+	}
 	.sidebar__logo {
 		margin-right: auto;
 		height: 70px;
