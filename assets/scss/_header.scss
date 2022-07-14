@@ -66,6 +66,7 @@
 			padding: 10px;
 			border-radius: 15px;
 			display: none;
+			z-index: 100;
 			&.active {
 				display: initial;
 			}

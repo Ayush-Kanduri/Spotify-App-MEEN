@@ -35,6 +35,8 @@ const development = {
 	jwt_refresh_token: process.env.SC_DEVELOPMENT_JWT_REFRESH_TOKEN,
 	express_server_port: process.env.SC_DEVELOPMENT_EXPRESS_SERVER_PORT,
 	email_sender: process.env.SC_DEVELOPMENT_FROM_EMAIL,
+	website_link: process.env.SC_DEVELOPMENT_WEBSITE_LINK,
+	jwt_share_token: process.env.SC_DEVELOPMENT_JWT_SHARE_TOKEN,
 	morgan: {
 		mode: "dev",
 		options: {

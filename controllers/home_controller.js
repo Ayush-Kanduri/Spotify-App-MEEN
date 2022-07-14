@@ -3,7 +3,6 @@ const ExistingPlaylist = require("../models/existingPlaylist");
 const Track = require("../models/track");
 const Artist = require("../models/artist");
 const Album = require("../models/album");
-const Like = require("../models/like");
 
 module.exports.home = async (req, res) => {
 	try {

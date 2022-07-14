@@ -58,7 +58,8 @@
       left: 0;
       padding: 10px;
       border-radius: 15px;
-      display: none; }
+      display: none;
+      z-index: 100; }
       .header .header__right .dropdown_menu.active {
         display: initial; }
       .header .header__right .dropdown_menu ul {

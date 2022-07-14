@@ -1,7 +1,7 @@
 <link rel="stylesheet" href="/css/home.css" />
 <script defer src="/js/create_playlist.js"></script>
 
-<% if(locals.user){ %>
+<% if(locals.user){ %> <%- include('modal.ejs') -%>
 <div class="player">
 	<div class="player__body">
 		<%- include('_sidebar.ejs') -%> <%- include('_newPlaylist.ejs') -%>

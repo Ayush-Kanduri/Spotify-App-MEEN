@@ -11,6 +11,7 @@ const friendsRouterFile = require("./friends");
 const likesRouterFile = require("./likes");
 const queueRouterFile = require("./queue");
 const forgotPasswordRouterFile = require("./forgot_password");
+const shareRouterFile = require("./share");
 const api = require("./api");
 
 router.use("/", homeRouterFile);
@@ -23,6 +24,7 @@ router.use("/friends", friendsRouterFile);
 router.use("/likes", likesRouterFile);
 router.use("/queue", queueRouterFile);
 router.use("/forgot-password", forgotPasswordRouterFile);
+router.use("/share", shareRouterFile);
 router.use("/api", api);
 
 module.exports = router;
