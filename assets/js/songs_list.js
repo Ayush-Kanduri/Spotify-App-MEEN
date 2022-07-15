@@ -84,15 +84,20 @@
 					play_pause.classList.remove("fa-circle-pause");
 					play_pause.classList.add("fa-circle-play");
 				} else if (playbarVisible && !isPlaying) {
+					footer.click();
 					await play(Tracks[currentTrack]);
 					play_pause.classList.remove("fa-circle-play");
 					play_pause.classList.add("fa-circle-pause");
 				}
-				// console.log("Tracks: ", Tracks);
-				// console.log("currentTrack: ", currentTrack);
-				// console.log("playbarVisible: ", playbarVisible);
-				// console.log("volume: ", volume);
-				// console.log("isPlaying: ", isPlaying);
+				footer.click();
+				await play(Tracks[currentTrack]);
+				play_pause.classList.remove("fa-circle-play");
+				play_pause.classList.add("fa-circle-pause");
+				console.log("Tracks: ", Tracks);
+				console.log("currentTrack: ", currentTrack);
+				console.log("playbarVisible: ", playbarVisible);
+				console.log("volume: ", volume);
+				console.log("isPlaying: ", isPlaying);
 			} catch (error) {
 				// console.log(error);
 			}

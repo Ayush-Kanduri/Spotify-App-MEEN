@@ -8,6 +8,7 @@
 		let loop;
 
 		let footer = document.querySelector(".footer");
+		let songs = document.querySelectorAll(".playable-tracks");
 		let play_pause = footer.querySelector(".play-pause");
 		let audio = document.querySelector("audio");
 		let volumeControl = footer.querySelector(".song_volume");
@@ -28,11 +29,33 @@
 		};
 
 		const onPageRefresh = () => {
-			window.addEventListener("beforeunload", function (e) {
+			window.addEventListener("beforeunload", async function (e) {
 				e.preventDefault();
-				const a = 23;
-				(e || window.event).returnValue = null;
-				return null;
+				const data = await fetchAPI("/queue");
+				const Queue = data.data;
+
+				({ Tracks, currentTrack, playbarVisible, volume, isPlaying, loop } =
+					Queue);
+
+				if (isPlaying && Tracks[currentTrack].isPlaying) {
+					Tracks[currentTrack].currentTime = audio.currentTime;
+					Tracks[currentTrack].isPlaying = true;
+					Tracks[currentTrack].duration = audio.duration;
+
+					await fetchAPI("/queue/update", {
+						method: "PUT",
+						headers: { "Content-Type": "application/json" },
+						body: JSON.stringify({
+							Track: Tracks[currentTrack],
+							currentTrack,
+							playbarVisible,
+							volume,
+							isPlaying: true,
+							loop,
+						}),
+					});
+				}
+				return;
 			});
 		};
 
@@ -40,110 +63,140 @@
 			try {
 				const data = await fetchAPI("/queue");
 				const Queue = data.data;
+
 				({ Tracks, currentTrack, playbarVisible, volume, isPlaying, loop } =
 					Queue);
+
 				togglePlayBar(Tracks[currentTrack]);
+
+				audio.src = Tracks[currentTrack].url;
+				audio.volume = volume;
+				audio.currentTime = Tracks[currentTrack].currentTime;
+				volumeControl.value = volume * 100;
+				Tracks[currentTrack].duration = audio.duration;
+
 				if (playbarVisible && isPlaying) {
-					audio.src = Tracks[currentTrack].url;
-					audio.volume = volume;
-					audio.currentTime = Tracks[currentTrack].currentTime;
-					volumeControl.value = volume * 100;
 					await pause(Tracks[currentTrack]);
 					play_pause.classList.remove("fa-circle-pause");
 					play_pause.classList.add("fa-circle-play");
 				} else if (playbarVisible && !isPlaying) {
-					audio.src = Tracks[currentTrack].url;
-					audio.volume = volume;
-					audio.currentTime = Tracks[currentTrack].currentTime;
-					volumeControl.value = volume * 100;
+					footer.click();
 					await play(Tracks[currentTrack]);
 					play_pause.classList.remove("fa-circle-play");
 					play_pause.classList.add("fa-circle-pause");
 				}
-				// console.log("Tracks: ", Tracks);
-				// console.log("currentTrack: ", currentTrack);
-				// console.log("playbarVisible: ", playbarVisible);
-				// console.log("volume: ", volume);
-				// console.log("isPlaying: ", isPlaying);
-			} catch (error) {
-				// console.log(error);
-			}
+				footer.click();
+				await play(Tracks[currentTrack]);
+				play_pause.classList.remove("fa-circle-play");
+				play_pause.classList.add("fa-circle-pause");
+				console.log("Tracks: ", Tracks);
+				console.log("currentTrack: ", currentTrack);
+				console.log("playbarVisible: ", playbarVisible);
+				console.log("volume: ", volume);
+				console.log("isPlaying: ", isPlaying);
+			} catch (error) {}
 		};
 
 		const playbar = async () => {
-			for (let song of songs) {
-				song.addEventListener("click", async (e) => {
-					e.stopPropagation();
-					e.preventDefault();
-					const name = song.getAttribute("data-song-name");
-					const artist = song.getAttribute("data-song-artist");
-					const url = song.getAttribute("data-song-url");
-					const thumbnail = song.getAttribute("data-song-thumbnail");
-					const name1 = name.trim().toLowerCase();
-					const name2 = Tracks[currentTrack]?.name.trim().toLowerCase();
-					const duration = 0;
-					const currentTime = 0;
-					const ended = false;
+			if (songs && songs.length > 0) {
+				for (let song of songs) {
+					song.addEventListener("click", async (e) => {
+						e.stopPropagation();
+						e.preventDefault();
+						const name = song.getAttribute("data-song-name");
+						const artist = song.getAttribute("data-song-artist");
+						const url = song.getAttribute("data-song-url");
+						const thumbnail = song.getAttribute("data-song-thumbnail");
+						const name1 = name.trim().toLowerCase();
+						const name2 = Tracks[currentTrack]?.name.trim().toLowerCase();
+						const duration = 0;
+						const currentTime = 0;
+						const ended = false;
 
-					if (name1 === name2) {
-						if (isPlaying) {
-							await pause(Tracks[currentTrack]);
-							play_pause.classList.remove("fa-circle-pause");
-							play_pause.classList.add("fa-circle-play");
-							return;
-						} else {
+						if (name1 === name2) {
+							if (isPlaying) {
+								await pause(Tracks[currentTrack]);
+								play_pause.classList.remove("fa-circle-pause");
+								play_pause.classList.add("fa-circle-play");
+								return;
+							} else {
+								await play(Tracks[currentTrack]);
+								play_pause.classList.remove("fa-circle-play");
+								play_pause.classList.add("fa-circle-pause");
+								return;
+							}
+						}
+
+						const Track = {
+							name,
+							artist,
+							url,
+							thumbnail,
+							duration,
+							currentTime,
+							ended,
+							isPlaying: true,
+						};
+
+						let arr = Tracks.filter(
+							(track) =>
+								track.name.trim().toLowerCase() ===
+								Track.name.trim().toLowerCase()
+						);
+						if (arr.length > 0) {
+							currentTrack = Tracks.findIndex((track) => {
+								return (
+									track.name.trim().toLowerCase() ===
+									Track.name.trim().toLowerCase()
+								);
+							});
+							if (currentTrack === -1) return;
+							audio.src = Tracks[currentTrack].url;
+							audio.volume = volume;
 							await play(Tracks[currentTrack]);
-							play_pause.classList.remove("fa-circle-play");
-							play_pause.classList.add("fa-circle-pause");
+							await togglePlayBar(Tracks[currentTrack]);
+							if (Tracks[currentTrack].isPlaying) {
+								play_pause.classList.remove("fa-circle-play");
+								play_pause.classList.add("fa-circle-pause");
+							}
 							return;
 						}
-					}
 
-					const Track = {
-						name,
-						artist,
-						url,
-						thumbnail,
-						duration,
-						currentTime,
-						ended,
-						isPlaying: true,
-					};
+						const data = await fetchAPI("/queue/add", {
+							method: "POST",
+							headers: {
+								"Content-Type": "application/json",
+							},
+							body: JSON.stringify({
+								Track: Track,
+								currentTrack: currentTrack,
+								playbarVisible: playbarVisible,
+								volume: volume,
+								isPlaying: isPlaying,
+								loop: loop,
+							}),
+						});
+						const Queue = data.data;
+						({
+							Tracks,
+							currentTrack,
+							playbarVisible,
+							volume,
+							isPlaying,
+							loop,
+						} = Queue);
 
-					const data = await fetchAPI("/queue/add", {
-						method: "POST",
-						headers: {
-							"Content-Type": "application/json",
-						},
-						body: JSON.stringify({
-							Track: Track,
-							currentTrack: currentTrack,
-							playbarVisible: playbarVisible,
-							volume: volume,
-							isPlaying: isPlaying,
-							loop: loop,
-						}),
+						audio.src = Tracks[currentTrack].url;
+						audio.volume = volume;
+						await play(Tracks[currentTrack]);
+						await togglePlayBar(Tracks[currentTrack]);
+
+						if (Tracks[currentTrack].isPlaying) {
+							play_pause.classList.remove("fa-circle-play");
+							play_pause.classList.add("fa-circle-pause");
+						}
 					});
-					const Queue = data.data;
-					({
-						Tracks,
-						currentTrack,
-						playbarVisible,
-						volume,
-						isPlaying,
-						loop,
-					} = Queue);
-
-					audio.src = Tracks[currentTrack].url;
-					audio.volume = volume;
-					await play(Tracks[currentTrack]);
-					await togglePlayBar(Tracks[currentTrack]);
-
-					if (Tracks[currentTrack].isPlaying) {
-						play_pause.classList.remove("fa-circle-play");
-						play_pause.classList.add("fa-circle-pause");
-					}
-				});
+				}
 			}
 			volumeControl.addEventListener("input", async (e) => {
 				await volumeChange(e);
@@ -287,6 +340,7 @@
 		};
 
 		const stop = async () => {
+			if (!audio.src) return;
 			await audio.pause();
 			audio.currentTime = 0;
 		};

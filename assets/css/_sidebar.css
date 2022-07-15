@@ -12,7 +12,7 @@
   padding-right: 10px;
   overflow: scroll; }
   .sidebar > :last-child {
-    margin-bottom: 10%; }
+    margin-bottom: 50%; }
   .sidebar .sidebar__logo {
     margin-right: auto;
     height: 70px;
