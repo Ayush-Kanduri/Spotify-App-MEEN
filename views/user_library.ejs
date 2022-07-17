@@ -1,5 +1,5 @@
-<link rel="stylesheet" href="/css/home.css" />
-<script defer src="/js/queue.js"></script>
+<link rel="stylesheet" href="<%= assetPath('css/home.css') %>" />
+<script defer src="<%= assetPath('js/queue.js') %>"></script>
 
 <% if(locals.user){ %> <%- include('modal.ejs') -%>
 <div class="player">
@@ -17,11 +17,17 @@
 	/>
 	<div class="logo__btns">
 		<a href="/users/auth/spotify" class="login__spotifyBtn">
-			<img src="/images/spotify-logo.png" alt="Sign in with Spotify" />
+			<img
+				src="<%= assetPath('images/spotify-logo.png') %>"
+				alt="Sign in with Spotify"
+			/>
 			Login With Spotify
 		</a>
 		<a href="/users/auth/google" class="login__googleBtn">
-			<img src="/images/google-logo.jpg" alt="Sign in with Google" />
+			<img
+				src="<%= assetPath('images/google-logo.jpg') %>"
+				alt="Sign in with Google"
+			/>
 			Login With Google
 		</a>
 		<a href="/users/login" class="login__btn">

@@ -1,4 +1,4 @@
-<script defer src="/js/create_link.js"></script>
+<script defer src="<%= assetPath('js/create_link.js') %>"></script>
 
 <div class="modal">
 	<div class="modal-content">
@@ -9,19 +9,19 @@
 		<div class="modal-body">
 			<img
 				class="social facebook"
-				src="/images/fb__logo.png"
+				src="<%= assetPath('images/fb__logo.png') %>"
 				alt="facebook__logo"
 				data-action="share/facebook/share"
 			/>
 			<img
 				class="social twitter"
-				src="/images/twitter__logo.png"
+				src="<%= assetPath('images/twitter__logo.png') %>"
 				alt="twitter__logo"
 				data-action="share/twitter/share"
 			/>
 			<img
 				class="social whatsapp"
-				src="/images/whatsapp__logo.png"
+				src="<%= assetPath('images/whatsapp__logo.png') %>"
 				alt="whatsapp__logo"
 				data-action="share/whatsapp/share"
 			/>
