@@ -1,5 +1,6 @@
 const express = require("express");
 const app = express();
+const viewHelpers = require("./config/view-helpers")(app);
 const env = require("./config/environment");
 const port = env.express_server_port;
 const expressLayouts = require("express-ejs-layouts");
