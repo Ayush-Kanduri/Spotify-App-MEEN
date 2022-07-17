@@ -64,7 +64,7 @@ app.use(
 		store: MongoStore.create(
 			{
 				//DB Connection URL
-				mongoUrl: `mongodb://localhost/${env.db}`,
+				mongoUrl: `${env.db}`,
 				//Interacts with the mongoose to connect to the MongoDB
 				mongooseConnection: db,
 				//To auto remove the store
