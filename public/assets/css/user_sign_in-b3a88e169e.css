@@ -1,0 +1,69 @@
+.login {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background-color: var(--background-color); }
+  .login .login__heading {
+    color: var(--text-color);
+    font-size: 3rem;
+    margin-bottom: 2rem; }
+  .login #login__form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column; }
+    .login #login__form input {
+      width: 100%;
+      height: 3rem;
+      border: none;
+      border-bottom: 1px solid var(--text-color);
+      background-color: transparent;
+      color: var(--text-color);
+      font-size: 1.5rem;
+      margin: 1rem 0;
+      padding: 10px;
+      outline: none; }
+      .login #login__form input::placeholder {
+        color: var(--text-color);
+        font-size: 1.3rem;
+        text-align: center; }
+      .login #login__form input:focus {
+        outline: none; }
+    .login #login__form button {
+      width: 100%;
+      height: 3rem;
+      border: none;
+      border-radius: 5px;
+      background-color: var(--logo-color);
+      color: var(--text-color);
+      font-size: 1.5rem;
+      margin: 1rem 0;
+      outline: none;
+      cursor: pointer; }
+      .login #login__form button:hover {
+        background-color: var(--logo-color); }
+  .login a {
+    color: var(--text-color);
+    text-decoration: none;
+    margin-top: 2rem;
+    cursor: pointer; }
+    .login a:hover {
+      text-decoration: underline; }
+    .login a:hover, .login a:focus, .login a:active, .login a:visited, .login a:link {
+      color: var(--text-color);
+      outline: none; }
+  .login .links {
+    margin-top: 1rem;
+    color: var(--text-color); }
+    .login .links a {
+      color: var(--text-color);
+      text-decoration: none;
+      cursor: pointer; }
+      .login .links a:hover {
+        text-decoration: underline; }
+      .login .links a:hover, .login .links a:focus, .login .links a:active, .login .links a:visited, .login .links a:link {
+        color: var(--text-color);
+        outline: none; }

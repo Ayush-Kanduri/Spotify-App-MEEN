@@ -1,0 +1,65 @@
+.login {
+  display: grid;
+  place-items: center;
+  height: 100%;
+  background-color: var(--background-color);
+  display: flex;
+  flex-direction: column; }
+  .login .login__logo {
+    width: 100%;
+    overflow: hidden;
+    -o-object-fit: contain;
+    -ms-object-fit: contain;
+    -webkit-object-fit: contain;
+    object-fit: contain; }
+  .login .logo__btns {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 100%; }
+    .login .logo__btns .login__spotifyBtn,
+    .login .logo__btns .login__googleBtn,
+    .login .logo__btns .login__btn {
+      padding: 20px;
+      cursor: pointer;
+      border-radius: 99px;
+      background-color: var(--logo-color);
+      font-weight: 600 !important;
+      color: var(--text-color);
+      text-decoration: none;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      word-spacing: 0.1rem;
+      letter-spacing: 0.05rem;
+      font-weight: 800;
+      box-shadow: 0px 4px 5px rgba(54, 200, 0, 0.5);
+      transition: 0.1s ease-in; }
+      .login .logo__btns .login__spotifyBtn i,
+      .login .logo__btns .login__googleBtn i,
+      .login .logo__btns .login__btn i {
+        margin-right: 10px;
+        color: var(--text-color);
+        font-size: 0.9rem;
+        background-color: var(--background-color);
+        border-radius: 50%;
+        padding: 3.5px; }
+      .login .logo__btns .login__spotifyBtn img,
+      .login .logo__btns .login__googleBtn img,
+      .login .logo__btns .login__btn img {
+        width: 20px;
+        height: 20px;
+        margin-right: 10px;
+        border-radius: 50%; }
+      .login .logo__btns .login__spotifyBtn:hover,
+      .login .logo__btns .login__googleBtn:hover,
+      .login .logo__btns .login__btn:hover {
+        color: var(--background-color); }
+
+.player .player__body {
+  display: flex; }
+
+@media screen and (max-width: 700px) {
+  .login .logo__btns {
+    flex-direction: column;
+    flex: 1; } }

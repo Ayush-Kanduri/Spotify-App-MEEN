@@ -1,0 +1,45 @@
+.songRow {
+  margin-left: 20px;
+  margin-right: 20px;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  color: var(--text-color); }
+  .songRow .songRow__album {
+    width: 40px;
+    height: 40px; }
+  .songRow:hover {
+    cursor: pointer;
+    background-color: var(--background-color);
+    opacity: 0.8; }
+  .songRow .songRow__info {
+    flex: 0.5;
+    margin-left: 20px; }
+    .songRow .songRow__info h1 {
+      font-size: 16px; }
+    .songRow .songRow__info p {
+      font-size: 14px;
+      margin-top: 3px;
+      color: gray; }
+    .songRow .songRow__info + p {
+      flex: 0.5; }
+      .songRow .songRow__info + p + i:hover {
+        color: var(--logo-color) !important; }
+      .songRow .songRow__info + p + i + p {
+        margin-left: 20px; }
+  .songRow.songRow:last-of-type {
+    margin-bottom: 100px; }
+  .songRow input[type="checkbox"] {
+    height: 30px;
+    width: 30px;
+    cursor: pointer; }
+    .songRow input[type="checkbox"]:checked {
+      background-color: var(--logo-color); }
+
+@media screen and (max-width: 500px) {
+  .songRow .songRow__info {
+    flex: 1; }
+    .songRow .songRow__info + p {
+      display: none; }
+      .songRow .songRow__info + p + i + p {
+        display: none; } }

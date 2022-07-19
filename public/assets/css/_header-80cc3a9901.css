@@ -1,0 +1,94 @@
+.header {
+  display: flex;
+  margin-bottom: 30px;
+  align-items: center;
+  justify-content: flex-end; }
+  .header .header__left {
+    flex: 0.5;
+    min-width: 70px;
+    background-color: var(--text-color);
+    color: gray;
+    border-radius: 30px;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    height: 40px;
+    display: none; }
+    .header .header__left input {
+      border: none;
+      padding-left: 10px;
+      width: 100%;
+      outline: none; }
+      .header .header__left input:focus {
+        outline: none; }
+      .header .header__left input::placeholder {
+        color: gray; }
+  .header .header__right {
+    display: flex;
+    align-items: center;
+    background-color: var(--background-color);
+    padding: 10px;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.13s ease-in;
+    position: relative; }
+    .header .header__right:hover {
+      background-color: #484848; }
+    .header .header__right h4 {
+      margin-left: 10px; }
+    .header .header__right img {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      -o-object-fit: contain;
+      -mz-object-fit: contain;
+      -webkit-object-fit: contain;
+      -o-object-position: center;
+      -mz-object-position: center;
+      -webkit-object-position: center;
+      object-fit: contain;
+      object-position: center;
+      aspect-ratio: 1/1; }
+    .header .header__right .dropdown_menu {
+      position: absolute;
+      top: 70px;
+      width: 100%;
+      min-width: 170px;
+      background-color: #484848;
+      left: 0;
+      padding: 10px;
+      border-radius: 15px;
+      display: none;
+      z-index: 100; }
+      .header .header__right .dropdown_menu.active {
+        display: initial; }
+      .header .header__right .dropdown_menu ul {
+        width: 100%;
+        height: 100%;
+        list-style: none; }
+        .header .header__right .dropdown_menu ul hr {
+          border: 1px solid #767676;
+          width: 90%;
+          margin: 10px auto; }
+        .header .header__right .dropdown_menu ul li {
+          width: 100%;
+          padding: 10px;
+          margin: auto;
+          height: 40px;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          border-radius: 15px;
+          border-bottom: 1px solid #484848; }
+          .header .header__right .dropdown_menu ul li:hover {
+            background-color: #767676; }
+
+@media screen and (max-width: 700px) {
+  .header {
+    gap: 1rem; }
+    .header .header__left {
+      flex: 1; } }
+
+@media screen and (max-width: 700px) {
+  .header {
+    flex-direction: column; } }
