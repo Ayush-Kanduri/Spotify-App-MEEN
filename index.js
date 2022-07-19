@@ -86,6 +86,7 @@ app.use(passport.setAuthenticatedUser);
 app.use(flash());
 app.use(customMiddleware.setFlash);
 app.use(customMiddleware.addMusic);
+app.use(customMiddleware.createUploads);
 app.use("/", route);
 
 app.listen(port, (err) => {
