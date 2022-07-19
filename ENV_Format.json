@@ -37,5 +37,8 @@
 	"SC_JWT_REFRESH_TOKEN": "secret key as per your wish",
 	"SC_JWT_SHARE_TOKEN": "secret key as per your wish",
 	"SC_FROM_EMAIL": "The Spotify Clone App 📧 <write the above user email here>",
-	"SC_WEBSITE_LINK": "Link of the website where it is deployed/hosted"
+	"SC_WEBSITE_LINK": "Link of the website where it is deployed/hosted",
+	"SC_REDIS_PORT": "Redis Port",
+	"SC_REDIS_HOST": "Redis Host URI without Port",
+	"SC_REDIS_AUTH": "Redis Auth"
 }

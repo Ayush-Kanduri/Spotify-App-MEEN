@@ -50,6 +50,7 @@ const production = {
 	asset_path: process.env.SC_ASSET_PATH,
 	session_cookie_key: process.env.SC_SESSION_COOKIE_KEY,
 	db: process.env.SC_DB,
+	db_name: process.env.SC_DB_NAME,
 	smtp: {
 		service: "gmail",
 		host: "smtp.gmail.com",
@@ -72,6 +73,9 @@ const production = {
 	email_sender: process.env.SC_FROM_EMAIL,
 	website_link: process.env.SC_WEBSITE_LINK,
 	jwt_share_token: process.env.SC_JWT_SHARE_TOKEN,
+	redis_host: process.env.SC_REDIS_HOST,
+	redis_port: process.env.SC_REDIS_PORT,
+	redis_auth: process.env.SC_REDIS_AUTH,
 	morgan: {
 		mode: "dev",
 		options: {
@@ -86,3 +90,8 @@ module.exports =
 	eval(process.env.ENVIRONMENT) == undefined
 		? development
 		: eval(process.env.ENVIRONMENT);
+
+// module.exports =
+// 	eval(process.env.NODE_ENV) == undefined
+// 		? development
+// 		: eval(process.env.NODE_ENV);
