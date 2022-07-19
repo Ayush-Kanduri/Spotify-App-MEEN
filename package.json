@@ -5,7 +5,8 @@
 	"main": "index.js",
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1",
-		"start": "nodemon index.js",
+		"_comment": "If using LocalHost or Cloud, use 'start': 'nodemon index.js'",
+		"start": "node index.js",
 		"prod_start": "SET NODE_ENV=production & nodemon index.js"
 	},
 	"repository": {
@@ -27,7 +28,7 @@
 	"bugs": {
 		"url": "https://github.com/Ayush-Kanduri/Spotify-Clone/issues"
 	},
-	"homepage": "https://github.com/Ayush-Kanduri/Spotify-Clone#readme",
+	"homepage": "https://the-spotify-clone-app.herokuapp.com/",
 	"dependencies": {
 		"bcrypt": "^5.0.1",
 		"connect-flash": "^0.1.1",
