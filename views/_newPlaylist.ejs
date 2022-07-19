@@ -11,7 +11,10 @@
 	>
 		<div class="create_playlist">
 			<div class="body__info">
-				<div class="albumImage">
+				<div
+					class="albumImage"
+					style="background-image: url('<%= assetPath(BG) %>')"
+				>
 					<input
 						type="file"
 						name="thumbnail"
@@ -21,6 +24,7 @@
 				</div>
 				<div class="body__infoText">
 					<strong>PLAYLIST</strong>
+					<input type="text" name="custom_link" value="<%= BG %>" hidden />
 					<input
 						type="text"
 						name="name"
@@ -41,11 +45,7 @@
 			</div>
 
 			<div class="body__songs">
-				<div class="body__icons">
-					<!-- <i class="fa-solid fa-circle-play body__shuffle"></i>
-					<i class="fa-solid fa-heart" style="font-size: xx-large"></i>
-					<i class="fa-solid fa-ellipsis"></i> -->
-				</div>
+				<div class="body__icons"></div>
 				<% for(let song of tracks){ %>
 				<div class="songRow">
 					<img
@@ -64,8 +64,6 @@
 						id="<%= song.id %>"
 						value="<%= song.id %>"
 					/>
-					<!-- <i class="fa-solid fa-heart"></i>
-					<p><%= song.duration %></p> -->
 				</div>
 				<% } %>
 			</div>

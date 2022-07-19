@@ -59,6 +59,7 @@ module.exports.add = async (req, res) => {
 		return res.render("create_playlist", {
 			title: "Create Playlist",
 			tracks: tracks,
+			BG: "images/custom-playlist.jpg",
 		});
 	} catch (error) {
 		console.log(error);
@@ -98,13 +99,13 @@ module.exports.create = async (req, res) => {
 				});
 			}
 
+			data = JSON.parse(JSON.stringify(req.body));
+
 			if (req.file) {
 				file = Playlist.playlistPath + "/" + req.file.filename;
 			} else {
-				file = "/images/custom-playlist.jpg";
+				file = data.custom_link;
 			}
-
-			data = JSON.parse(JSON.stringify(req.body));
 
 			let playlist = await Playlist.create({
 				name: data.name,

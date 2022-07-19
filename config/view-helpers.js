@@ -5,10 +5,10 @@ const path = require("path");
 module.exports = (app) => {
 	app.locals.assetPath = (filePath) => {
 		if (env.name === "development") return "/" + filePath;
-		const manifest = path.join(`/public/rev-manifest.json`);
-		const manifestPath = path.join(__dirname + ".." + manifest);
-		// fs.readFileSync(manifestPath);
-		// return;
+		const manifestPath = path.join(
+			__dirname,
+			`../public/assets/rev-manifest.json`
+		);
 		return "/" + JSON.parse(fs.readFileSync(manifestPath))[filePath];
 	};
 };

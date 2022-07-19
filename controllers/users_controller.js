@@ -299,12 +299,13 @@ module.exports.createSession = async (req, res) => {
 			return res.render("recommendations", {
 				title: "Music Preferences",
 				all_genres: genres,
+				BG: "images/gradient1.jpg",
 			});
 		}
 		req.flash("success", "Logged In Successfully !!!");
 		return res.redirect("/");
 	} catch (error) {
-		console.log("Error in creating the session !!!");
+		console.log(error);
 		req.flash("error", "Error in creating the session !!!");
 		return res.redirect("back");
 	}
