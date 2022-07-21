@@ -1,5 +1,6 @@
 # Spotify-Clone
 The Spotify Clone App is a Song Based Web App designed using Full Stack Web Development through the Technology of MEN Stack (MongoDB, ExpressJS, NodeJS), RedisDB, GulpJS, NodeMailer, and Passport Auths. 
+This website is completely Responsive across all the Devices.
 
 -  Users are able to create playlists with their choice of songs.
 -  Users can update their profiles.
