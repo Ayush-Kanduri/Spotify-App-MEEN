@@ -11,6 +11,7 @@ This website is completely Responsive across all the Devices.
 -  Users can share their listening activity across other social media.
 -  Users receive mail notifications on new account creation & for Password Reset Link.
 -  Users can log in through manual or social login.
+-  JWT functionality with access & refresh tokens is also present with cookies in the codebase, but is not used. It's for the demonstration purpose.
 
 
 ## NOTE
