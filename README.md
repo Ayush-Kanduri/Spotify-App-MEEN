@@ -1,15 +1,15 @@
 # Spotify-Clone
 The Spotify Clone App is a Song Based Web App designed using Full Stack Web Development through the Technology of MEN Stack (MongoDB, ExpressJS, NodeJS), RedisDB, GulpJS, NodeMailer, and Passport Auths. 
 
-Users are able to create playlists with their choice of songs.
-Users can update their profiles.
-Users can visit playlists, artists, albums, libraries, & many more pages with songs.
-Users can search for songs, artists, albums, playlists, and other users.
-Users can follow other users.
-Users can like & play the songs across the app.
-Users can share their listening activity across other social media.
-Users receive mail notifications on new account creation & for Password Reset Link.
-Users can log in through manual or social login.
+-  Users are able to create playlists with their choice of songs.
+-  Users can update their profiles.
+-  Users can visit playlists, artists, albums, libraries, & many more pages with songs.
+-  Users can search for songs, artists, albums, playlists, and other users.
+-  Users can follow other users.
+-  Users can like & play the songs across the app.
+-  Users can share their listening activity across other social media.
+-  Users receive mail notifications on new account creation & for Password Reset Link.
+-  Users can log in through manual or social login.
 
 
 ## NOTE
