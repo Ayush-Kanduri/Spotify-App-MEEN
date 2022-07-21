@@ -11,6 +11,16 @@ Users can share their listening activity across other social media.
 Users receive mail notifications on new account creation & for Password Reset Link.
 Users can log in through manual or social login.
 
+
+## NOTE
+
+-  master branch contains the code for the Heroku Deployment.
+-  Development branch contains the code for the localhost development version.
+-  AWS_Deployment branch contains the code for the AWS Deployment.
+
+#
+
+
 ## Tools Used
 
 <p align="left">
