@@ -2,10 +2,12 @@ const kue = require("kue");
 const env = require("./environment");
 let queue = "";
 
-if (env.name == "development") {
-	//queue = kue.createQueue({redis: {port: 6379,host: "localhost",auth: ""}});
+//queue = kue.createQueue({redis: {port: 6379,host: "localhost",auth: ""}});
+if (env.name === "development" && env.deployment === "local") {
 	queue = kue.createQueue();
-} else {
+} else if (env.name === "production" && env.deployment === "AWS") {
+	queue = kue.createQueue();
+} else if (env.name === "production" && env.deployment === "Heroku") {
 	queue = kue.createQueue({
 		prefix: "q",
 		redis: {
