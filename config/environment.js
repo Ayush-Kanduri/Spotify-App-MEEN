@@ -15,6 +15,8 @@ const development = {
 	asset_path: process.env.SC_DEVELOPMENT_ASSET_PATH,
 	session_cookie_key: process.env.SC_DEVELOPMENT_SESSION_COOKIE_KEY,
 	db: process.env.SC_DEVELOPMENT_DB,
+	db_name: process.env.SC_DEVELOPMENT_DB_NAME,
+	deployment: process.env.DEPLOYMENT,
 	smtp: {
 		service: "gmail",
 		host: "smtp.gmail.com",
@@ -51,6 +53,7 @@ const production = {
 	session_cookie_key: process.env.SC_SESSION_COOKIE_KEY,
 	db: process.env.SC_DB,
 	db_name: process.env.SC_DB_NAME,
+	deployment: process.env.DEPLOYMENT,
 	smtp: {
 		service: "gmail",
 		host: "smtp.gmail.com",
