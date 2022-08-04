@@ -40,5 +40,8 @@
 	"SC_WEBSITE_LINK": "Link of the website where it is deployed/hosted",
 	"SC_REDIS_PORT": "Redis Port",
 	"SC_REDIS_HOST": "Redis Host URI without Port",
-	"SC_REDIS_AUTH": "Redis Auth"
+	"SC_REDIS_AUTH": "Redis Auth",
+
+	"ENVIRONMENT": "development",
+	"DEPLOYMENT": "local"
 }
