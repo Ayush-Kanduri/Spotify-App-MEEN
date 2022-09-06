@@ -28,7 +28,7 @@
 	"bugs": {
 		"url": "https://github.com/Ayush-Kanduri/Spotify-Clone/issues"
 	},
-	"homepage": "https://the-spotify-clone-app.herokuapp.com/",
+	"homepage": "https://spotify-clone.onrender.com",
 	"dependencies": {
 		"bcrypt": "^5.0.1",
 		"connect-flash": "^0.1.1",

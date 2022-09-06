@@ -49,7 +49,7 @@ const development = {
 
 const production = {
 	name: process.env.SC_ENVIRONMENT,
-	asset_path: process.env.SC_ASSET_PATH,
+	asset_path: process.env.ASSET_PATH,
 	session_cookie_key: process.env.SC_SESSION_COOKIE_KEY,
 	db: process.env.SC_DB,
 	db_name: process.env.SC_DB_NAME,
@@ -66,10 +66,10 @@ const production = {
 	},
 	google_client_id: process.env.SC_GOOGLE_CLIENT_ID,
 	google_client_secret: process.env.SC_GOOGLE_CLIENT_SECRET,
-	google_callback_url: process.env.SC_GOOGLE_CALLBACK_URL,
+	google_callback_url: `${process.env.SC_WEBSITE_LINK}${process.env.SC_GOOGLE_CALLBACK_URL}`,
 	spotify_client_id: process.env.SC_SPOTIFY_CLIENT_ID,
 	spotify_client_secret: process.env.SC_SPOTIFY_CLIENT_SECRET,
-	spotify_callback_url: process.env.SC_SPOTIFY_CALLBACK_URL,
+	spotify_callback_url: `${process.env.SC_WEBSITE_LINK}${process.env.SC_SPOTIFY_CALLBACK_URL}`,
 	jwt_access_token: process.env.SC_JWT_ACCESS_TOKEN,
 	jwt_refresh_token: process.env.SC_JWT_REFRESH_TOKEN,
 	express_server_port: process.env.SC_EXPRESS_SERVER_PORT,

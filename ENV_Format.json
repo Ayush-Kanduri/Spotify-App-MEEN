@@ -20,7 +20,7 @@
 	"SC_DEVELOPMENT_WEBSITE_LINK": "http://localhost:8000",
 
 	"SC_ENVIRONMENT": "production",
-	"SC_ASSET_PATH": "./public/assets",
+	"ASSET_PATH": "./public/assets",
 	"SC_SESSION_COOKIE_KEY": "secret key as per your wish",
 	"SC_DB": "database URL as per your wish",
 	"SC_DB_NAME": "database name as per your wish",

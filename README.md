@@ -25,7 +25,7 @@ This website is completely Responsive across all the Devices.
 
 ## ❗ Note
 
--  master branch contains the code for the Heroku Deployment.
+-  master branch contains the code for the Heroku/Other Deployments.
 -  Development branch contains the code for the localhost development version.
 -  AWS_Deployment branch contains the code for the AWS Deployment.
    <br/>
@@ -118,7 +118,7 @@ For any issues related to the project, raise an ISSUE in the respective Reposito
 
 ## 🔗 Links
 
-> ## Checkout the Website [Web Application](https://the-spotify-clone-app.herokuapp.com/)
+> ## Checkout the Website [Web Application](https://spotify-clone.onrender.com)
 >
 > ## Checkout the Application Demo Video [YouTube](https://youtu.be/hF3PdO0VS9o)
 
