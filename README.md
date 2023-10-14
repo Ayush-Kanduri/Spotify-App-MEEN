@@ -118,8 +118,6 @@ For any issues related to the project, raise an ISSUE in the respective Reposito
 
 ## 🔗 Links
 
-> ## Checkout the Website [Web Application](https://spotify-clone-s1rn.onrender.com)
->
 > ## Checkout the Application Demo Video [YouTube](https://youtu.be/hF3PdO0VS9o)
 
 <br/>
